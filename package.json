@@ -1,5 +1,5 @@
 {
-  "name": "react-custom-scroll",
+  "name": "react-customscroll",
   "version": "1.0.0",
   "description": "This is little component for custom scroll in React",
   "main": "dist/customscroll.js",
@@ -7,7 +7,7 @@
     "start": "set NODE_ENV=development&& webpack-dev-server --history-api-fallback --hot --inline --progress --colors",
     "production": "set NODE_ENV=production&& webpack"
   },
-  "author": "Aleksandrov Sergey",
+  "author": "Aleksandrov Sergey <gooddev.sergey@gmail.com> (https://github.com/AlexSergey/react-custom-scroll)",
   "license": "MIT",
   "devDependencies": {
     "autoprefixer": "^6.3.7",
