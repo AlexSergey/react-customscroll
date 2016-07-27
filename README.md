@@ -13,3 +13,6 @@ This is little component for custom scroll in React. It is very customizable and
 - Animate scrollTo feature
 - min-height and max-height compatibility
 
+Example:
+
+[Example](http://natrube.net/custom-scroll/index.html)
