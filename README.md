@@ -1,4 +1,4 @@
-# React Simple Scroll
+# React Custom Scroll
 
 This is little component for custom scroll in React. It is very customizable and flexible component.
 
