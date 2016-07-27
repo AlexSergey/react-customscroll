@@ -7,8 +7,8 @@
     "start": "set NODE_ENV=development&& webpack-dev-server --history-api-fallback --hot --inline --progress --colors",
     "production": "set NODE_ENV=production&& webpack"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Aleksandrov Sergey",
+  "license": "MIT",
   "devDependencies": {
     "autoprefixer": "^6.3.7",
     "babel-core": "^6.10.4",
