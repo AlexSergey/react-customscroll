@@ -7,6 +7,10 @@
     "start": "set NODE_ENV=development&& webpack-dev-server --history-api-fallback --hot --inline --progress --colors",
     "production": "set NODE_ENV=production&& webpack"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AlexSergey/react-customscroll"
+  },
   "author": "Aleksandrov Sergey <gooddev.sergey@gmail.com> (https://github.com/AlexSergey/react-custom-scroll)",
   "license": "MIT",
   "devDependencies": {
