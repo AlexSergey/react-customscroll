@@ -1,0 +1,152 @@
+{
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    },
+  },
+  "plugins": [
+    "react"
+  ],
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true,
+    "mocha": true,
+    "commonjs": true
+  },
+  "parser": "babel-eslint",
+  "rules": {
+    //For react
+    "react/jsx-uses-react": 2, //no-unused не будет ругаться на import React
+    "react/jsx-uses-vars": 2, //no-unused не будет ругаться на реактовые компоненты
+    "react/no-did-mount-set-state": 2, //Нельзя сетить в стейт в дидМоунт
+    "react/no-did-update-set-state": 2, //Нельзя сетить в стейт в дидАпдейт
+    "react/no-is-mounted": 2, //
+    "react/jsx-no-duplicate-props": 2, //Не дублировать пропсы
+
+    "jsx-quotes": [2, "prefer-double"], //Двойные кавычки в JSX
+    "indent": [2, 4], //4 пробела отступы
+    "quotes": [2, "single"], //Использовать одинарные кавычки
+    "semi": 2, //проверка точек с запятой в конце выражения
+    "no-dupe-args": 2, //Дублирование параметров в вызываемой функции
+    "no-dupe-keys": 2, //Дублирование полей объекта
+    "no-duplicate-case": 2, //Проверка дублирования case в switch
+    "no-empty": 2, //Реагировать на пустые выражения if (foo) {} while(foo) {} switch(foo) {} try {} catch {}
+    "no-empty-character-class": 2, //Пустые классы в регулярках /^abc[]/
+    "no-ex-assign": 2, //Не дает перезаписывать ошибку в try / catch
+    "no-extra-semi": 2, //Реагирует на опечатки ;; - две точки с запятой после выражения
+    "no-inner-declarations": 2, //запрет записи функций в блоках if / for / switch
+    "no-sparse-arrays": 2, //запрет пустых значений в массиве [,,]
+    "no-unexpected-multiline": 2, //проверка точек с запятой в конце выражения (там где они по спецификации разрешены)
+    "no-unreachable": 2, //Выводить ошибку в случае, если после return в функции имеется код
+    "use-isnan": 2, //Не использовать сравнение foo == NaN, использовать isNaN(foo)
+    "valid-jsdoc": 2, //Валидировать написание комментариев в JSDoc
+    "valid-typeof": 2, //
+    "block-scoped-var": 2, //объявление переменных вне блоков if / try / switch
+    "curly": 2, //Ставить фигурные скобки даже при однострочном выражении
+    //"default-case": 2, //В switch должен быть блок default
+    "dot-location": [2, "property"], //Переносить вызов метода в цепочке вместе с точкой
+    "dot-notation": [2, {"allowPattern": "^[a-z]+(_[a-z]+)+$"}], //Обращение к свойства обхекта только по точке. Исключения записи через дефис, подчеркивание, пробел. Тогда можно юзать скобки
+    "eqeqeq": 2, //Принудительное использование строгово равенства ===
+    "guard-for-in": 2, //Принудительное использование hasOwnProperty при прохождении цикла for in
+    "no-caller": 2, //запрет использования callee
+    /**
+    bad
+    function foo() {
+      if (x) {
+          return y;
+      } else {
+        return z;
+      }
+    }
+    good
+    function foo() {
+        if (x) {
+            return y;
+        }
+
+        return z;
+    }
+    */
+    "no-else-return": 2, //Не использовать для else return блок
+    "no-eval": 2, //Не использовать eval
+    "no-extend-native": 2, //Не патчить нативные объекты
+    "no-fallthrough": 2, //Ставить всегда break в switch
+    "no-implied-eval": 2, //Не использовать строки для вызова в setTimeout / setInterval. Только функции. Пример : setTimeout("alert('Hi!');", 100);
+
+    /**
+    bad
+    if (foo) {
+        bar();
+        {
+            baz();
+        }
+    }
+    good
+    if (foo) {
+        if (bar) {
+            baz();
+        }
+    }
+    */
+    "no-lone-blocks": 2, //Без if использовать блоки нельзя
+    //"no-magic-numbers": 2, //Да да да! Никаких больше магических чисел
+    "no-native-reassign": 2, //Не переопределять нативные конструкторы
+    "no-proto": 2, //Не взаимодействовать с __proto__
+    /**
+    Не делать так
+    location.href = "javascript:"
+    */
+    "no-script-url": 2, //Использование javascript: сравнимо с eval. Браузер при вставке в ссылку JS начинает её разбор и выполнение
+    "no-self-assign": 2, //Не присваивать само в себя x = x; [1, 2] = [1, 2]
+    "no-self-compare": 2, //Не сравнивать одинаковые значения x === x
+    "no-unused-expressions": 2, //Валить эксепшен при неиспользуемых выражениях
+    "no-with": 2, //Не использовать with
+    //"vars-on-top": 2, //Объявлять все переменные вверху функции
+    "wrap-iife": [2, "outside"], //Оборачивать анонимную самовызывающуюся функцию в скобочки, скобочки вызова помещать во внутрь
+    "no-delete-var": 2, //delete умеет работать только с свойствами объекта, но не с переменными
+    "no-undef": 2, //Ругаться на необъявленные переменные
+    //"no-unused-vars": 2, //Ругаться на неиспользуемые переменные
+    "block-spacing": [2, "always"], //Всегда ставить пробелы после фигурных скобках в однострочном выражении
+    //"brace-style": [2, "stroustrup", { "allowSingleLine": true }], //ставить фигурную скобку на том же уровне, что и выражение. Сносить else if на новую строку от фигурной скобки от if
+    //"camelcase": [2, {"properties": "always"}], //всегда использовать camelCase
+    "comma-spacing": [2, {"before": false, "after": true}], //Ставить пробел после запятой в свойствах объекта или массивах
+    /**
+    bad
+    var foo = 1
+    ,
+    bar = 2;
+
+    good
+    var foo = 1,
+    bar = 2;
+    */
+    "comma-style": [2, "last"], //при перечислении переменных запятую держать на одном уровне
+    "computed-property-spacing": [2, "never"], //Не ставить пробелы в вычисляемых параметрах good: obj["this-is"], bad: obj[ "this-is" ]
+    "keyword-spacing": [2, {"before": true, "after": true, "overrides": {}}], //Ставить пробел перед фигурной скобкой выражения if ( / switch (
+    //"newline-after-var": [2, "always"], //После объявления блока переменных ставить одну строку отступа
+    "no-mixed-spaces-and-tabs": [2, "smart-tabs"], //Разрешение выравнивания переменных
+    "no-multiple-empty-lines": [2, {"max": 3, "maxEOF": 1}], //Не более трех пустых строк для отделеня фрагментов кода
+    /*"one-var": [2, { //совмещать определение переменных
+      "var": "always", // всегда для переменных
+      "let": "always", // всегда для let
+      "const": "never" // никогда для констант, так как константа определяется сразу
+    }],*/
+    /**
+    bad
+    let a,
+        b = 0, c;
+
+    good
+    var a,
+        b;
+    */
+    "one-var-declaration-per-line": [2, "always"], //Присваивание и объявление начинать с новой строки
+    "space-before-blocks": [2, "always"], //Всегда ставить пробел перед фигурной скобкой
+    "arrow-spacing": [2, { "before": true, "after": true }], //Ставить пробел перед и после arrow function
+    "generator-star-spacing": [2, {"before": false, "after": true}], //Ставить звездочку генератора сразу после function*
+
+  }
+}

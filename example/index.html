@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+
+    <title></title>
+    <link rel="stylesheet" href="../dist/styles.css">
+    <link rel="stylesheet" href="./styles/example.css">
+
+    <script src="react-towel.js"></script>
+    <script src="../dist/customscroll.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+<script type="text/babel">
+    var data = [
+        'Click add please! '
+    ];
+
+    class Layout extends React.Component {
+        constructor(prop) {
+            super(prop)
+            this.state = {
+                data: data
+            }
+        }
+        add() {
+            data.push(' Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, animi aspernatur cum debitis deleniti deserunt distinctio eius esse expedita facilis harum illo iure iusto molestiae, perferendis quam, quidem quos tenetur.');
+            this.setState({
+                data: data
+            })
+        }
+
+        setScrollTo(e) {
+            e.preventDefault();
+            var anchorOffset = ReactDOM.findDOMNode(this.refs[e.currentTarget.dataset.anc]).offsetTop;
+
+            this.refs.scrollWithAnchor.setY(anchorOffset);
+        }
+
+        render() {
+            return (
+                    <CustomScroll>
+                        <div className="jumbotron">
+                            <div className="container text-center">
+                                <h1>React Custom Scroll</h1>
+                                <p>It is very easy and very small React Custom Scroll library</p>
+                                <h2>Features</h2>
+                                <ul>
+                                    <li>- Without dependency</li>
+                                    <li>- Very simple and flexible</li>
+                                    <li>- Very small size (8kb for JS / 1kb - CSS)</li>
+                                    <li>- Easy customization, easy api</li>
+                                    <li>- Keyboard bind</li>
+                                    <li>- Reinitialize after all mutation events</li>
+                                    <li>- Mobile compatibility</li>
+                                    <li>- Animate scrollTo feature</li>
+                                    <li>- min-height and max-height compatibility</li>
+                                </ul>
+                                <p><a className="btn btn-primary btn-lg" href="https://github.com/AlexSergey/react-custom-scroll" role="button">Github</a></p>
+                            </div>
+                        </div>
+                        <div id="wrap">
+                            <h1>Scroll by anchor:</h1>
+                            <ul className="nav nav-tabs nav-justified">
+                                <li><a href="#" data-anc="anc1" onClick={this.setScrollTo.bind(this)}>to anchor 1</a></li>
+                                <li><a href="#" data-anc="anc2" onClick={this.setScrollTo.bind(this)}>to anchor 2</a></li>
+                                <li><a href="#" data-anc="anc3" onClick={this.setScrollTo.bind(this)}>to anchor 3</a></li>
+                                <li><a href="#" data-anc="anc4" onClick={this.setScrollTo.bind(this)}>to anchor 4</a></li>
+                            </ul>
+                            <div style={{height: '143px'}}>
+                                <CustomScroll ref="scrollWithAnchor">
+                                    <h2 ref="anc1">Anchor 1</h2>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
+                                    <h2 ref="anc2">Anchor 2</h2>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
+                                    <h2 ref="anc3">Anchor 3</h2>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
+                                    <h2 ref="anc4">Anchor 4</h2>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
+                                    <h3>The end</h3>
+                                </CustomScroll>
+                            </div>
+                            <hr />
+                            <div>
+                                <h1>Auto reinit:</h1>
+                                <div style={{width: '350px', height: '200px'}}>
+                                    <CustomScroll>
+                                        {this.state.data}
+                                    </CustomScroll>
+                                </div>
+                                <button className="btn btn-default" onClick={this.add.bind(this)}>Add</button>
+                            </div>
+                            <hr />
+                            <div>
+                                <h1>Textarea scroll:</h1>
+                                <div id="textarea" >
+                                    <CustomScroll>
+                                        <div contentEditable>
+                                            I look like a textarea
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?
+                                        </div>
+                                    </CustomScroll>
+                                </div>
+                            </div>
+                        </div>
+                </CustomScroll>
+            )
+        }
+    }
+
+    ReactDOM.render(
+            <Layout />,
+            document.getElementById('root')
+    );
+    /*var h = React.createElement;
+    function render(MyComponent) {
+        return h(MyComponent, { foo: 'bar' });
+    }
+    var Header = React.createClass({
+        render: function() {
+            return h('div')
+        }
+    });
+
+    var Layout = React.createClass({
+        render: function() {
+            return h(CustomScroll, null,
+                h('ul', null, h('li', null, 'Hello'))
+            )
+        }
+    });
+    ReactDOM.render(render(Layout), document.getElementById('root'))*/
+</script>
+</body>
+</html>

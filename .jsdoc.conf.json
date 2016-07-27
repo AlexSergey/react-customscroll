@@ -1,0 +1,25 @@
+{
+    "source": {
+        "exclude": [ "build", "development", "documentation", "embeding", "jsdoc", "node_modules", "source/vendor", "tasks" ],
+        "includePattern": ".+\\.js(doc)?$",
+        "excludePattern": "(^|\\/|\\\\)_"
+    },
+    "templates": {
+        "applicationName": "Demo",
+        "disqus": "",
+        "googleAnalytics": "",
+        "openGraph": {
+            "title": "",
+            "type": "website",
+            "image": "",
+            "site_name": "",
+            "url": ""
+        },
+        "meta": {
+            "title": "",
+            "description": "",
+            "keyword": ""
+        },
+        "linenums": true
+    }
+}

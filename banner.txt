@@ -1,0 +1,6 @@
+|=======================================|
+|       React Custom Scroll 1.0.0       |
+|=======================================|
+This is simple custom scroll based on CSS
+
+github: https://github.com/AlexSergey/react-custom-scroll

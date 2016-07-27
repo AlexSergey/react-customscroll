@@ -1,0 +1,27 @@
+{
+  "presets": ["es2015", "stage-0", "react"],
+  "plugins": [
+     "transform-decorators-legacy",
+     /** 
+     * * * * * * * * * * * * * * * * *
+     * Convert async ES7 to promise  *
+     * * * * * * * * * * * * * * * * *
+     * async function test() {
+     *   await db.destroy();
+     * }
+     */
+     "kneden",
+     /**
+     Object.assign({}, obj1, obj2)
+     */
+     "transform-object-assign"
+   ],
+   "env": {
+     "production": {
+       "plugins": [
+         "transform-react-constant-elements",
+         "transform-react-inline-elements"
+       ]
+     }
+   }
+}
