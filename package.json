@@ -11,7 +11,7 @@
     "type": "git",
     "url": "https://github.com/AlexSergey/react-customscroll"
   },
-  "author": "Aleksandrov Sergey <gooddev.sergey@gmail.com> (https://github.com/AlexSergey/react-custom-scroll)",
+  "author": "Aleksandrov Sergey <gooddev.sergey@gmail.com> (https://github.com/AlexSergey/react-customscroll)",
   "license": "MIT",
   "devDependencies": {
     "autoprefixer": "^6.3.7",

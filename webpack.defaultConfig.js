@@ -11,7 +11,9 @@ var config = deepAssign({}, {
     webpack: {
         devtool: 'source-map',
         hasVendors: false,
-        entry: {},
+        entry: {
+            customscroll: path.join(src, 'index.jsx')
+        },
         output: {
             path: dest
         },
