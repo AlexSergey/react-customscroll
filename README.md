@@ -29,10 +29,10 @@ import CustomScroll from 'react-customscroll';
 ### Step 3:
 Paste CustomSCroll component inside wrapper block with height and overlow: hidden
 For example:
-<pre>
+```
 <div style={{height: '500px', overflow: 'hidden'}}>
   <CustomScroll>
     ...
   </CustomScroll>
 </div>
-</pre>
+```
