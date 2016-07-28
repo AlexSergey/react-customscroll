@@ -18,7 +18,9 @@ This is little component for custom scroll in React. It is very customizable and
 ## How usage
 
 ### Step 1:
-<pre>npm install react-customscroll -save</pre>
+```
+npm install react-customscroll -save
+```
 
 ### Step 2:
 
@@ -36,3 +38,4 @@ For example:
   </CustomScroll>
 </div>
 ```
+See more examples in <strong>example/index.html</strong>
