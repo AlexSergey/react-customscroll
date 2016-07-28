@@ -1,6 +1,6 @@
 {
   "name": "react-customscroll",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "This is little component for custom scroll in React",
   "main": "dist/customscroll.js",
   "scripts": {
@@ -60,9 +60,5 @@
     "webpack": "1.13.1",
     "webpack-dev-server": "1.14.1",
     "yargs": "^4.8.0"
-  },
-  "dependencies": {
-    "react": "15.2.0",
-    "react-dom": "15.2.0"
   }
 }
