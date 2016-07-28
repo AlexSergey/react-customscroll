@@ -25,8 +25,10 @@ npm install react-customscroll -save
 ### Step 2:
 
 Inject component on your page:
+```
 import 'react-customscroll/dist/styles.css';
 import CustomScroll from 'react-customscroll';
+```
 
 ### Step 3:
 Paste CustomScroll component inside wrapper block with height and overlow: hidden
