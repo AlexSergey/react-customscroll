@@ -2,6 +2,8 @@
 
 This is little component for custom scroll in React. It is very customizable and flexible component.
 
+[Demo](http://natrube.net/custom-scroll/index.html)
+
 ## Features:
 - Without dependency
 - Very simple and flexible
@@ -13,7 +15,6 @@ This is little component for custom scroll in React. It is very customizable and
 - Animate scrollTo feature
 - min-height and max-height compatibility
 
-[Example](http://natrube.net/custom-scroll/index.html)
 
 ## How usage
 
@@ -25,7 +26,7 @@ npm install react-customscroll -save
 ### Step 2:
 
 Inject component on your page:
-```
+```jsx
 import 'react-customscroll/dist/styles.css';
 import CustomScroll from 'react-customscroll';
 ```
@@ -33,7 +34,7 @@ import CustomScroll from 'react-customscroll';
 ### Step 3:
 Paste CustomScroll component inside wrapper block with height and overlow: hidden
 For example:
-```
+```jsx
 <div style={{height: '500px', overflow: 'hidden'}}>
   <CustomScroll>
     ...
@@ -41,3 +42,7 @@ For example:
 </div>
 ```
 See more examples in <strong>example/index.html</strong>
+
+## License
+
+MIT
