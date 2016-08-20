@@ -1,20 +1,20 @@
-# React Custom Scroll
+# React Custom Scroll v2
 
-This is little component for custom scroll in React. It is very customizable and flexible component.
+This is little component for custom scroll in React. It is very customizable and flexible component. In version 2 you can customization scrollbar
 
 [Demo](http://natrube.net/custom-scroll/index.html)
 
 ## Features:
 - Without dependency
 - Very simple and flexible
-- Very small size (8kb for JS / 1kb - CSS)
+- Very small size (9kb for JS)
 - Easy customization, easy api
 - Keyboard bind
 - Reinitialize after all mutation events
 - Mobile compatibility
 - Animate scrollTo feature
 - min-height and max-height compatibility
-
+- simple customizations
 
 ## How usage
 
@@ -27,7 +27,6 @@ npm install react-customscroll -save
 
 Inject component on your page:
 ```jsx
-import 'react-customscroll/dist/styles.css';
 import CustomScroll from 'react-customscroll';
 ```
 

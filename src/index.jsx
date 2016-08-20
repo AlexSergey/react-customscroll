@@ -1,5 +1,3 @@
-import './styles/customscroll.scss';
-
 import React, {Component} from 'react';
 import {on, off} from './utils/events';
 import getScrollWidth from './utils/getScrollWidth';
@@ -17,6 +15,8 @@ const REINIT_MS = 500;
 
 var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
+import stylesFactory from './styles';
+
 class CustomScroll extends Component {
     constructor(props) {
         super(props);
@@ -31,6 +31,13 @@ class CustomScroll extends Component {
             _this.removeListeners();
             _this.blockSelection(true);
         };
+
+        this.styles = stylesFactory({
+            scrollWidth:     typeof props.scrollWidth     !== 'undefined' ? props.scrollWidth     : '6px',
+            scrollAreaColor: typeof props.scrollAreaColor !== 'undefined' ? props.scrollAreaColor : '#494949',
+            scrollBarRadius: typeof props.scrollBarRadius !== 'undefined' ? props.scrollBarRadius : '6px',
+            scrollBarColor:  typeof props.scrollBarColor  !== 'undefined' ? props.scrollBarColor  : '#aeaeae'
+        });
 
         this.restScrollAfterResize = function() {
             _this.nextWrapperHeight = 0;
@@ -158,9 +165,9 @@ class CustomScroll extends Component {
     }
 
     getScrollArea() {
-        return <div ref="scroll-area" className={"ctm-scroll-area"} onClick={this.jump.bind(this)}>
-            <div ref="scroll-area-holder" className="ctm-scroll-area-frame">
-                <div ref="scrollBar" className="ctm-scroll-bar" style={this.getScrollBarStyles.call(this)} onMouseDown={this.onMouseDown.bind(this)} onTouchStart={this.onMouseDown.bind(this)}/>
+        return <div ref="scroll-area" style={this.styles.scrollArea} onClick={this.jump.bind(this)}>
+            <div ref="scroll-area-holder" style={this.styles.scrollAreaFrame}>
+                <div ref="scrollBar" style={Object.assign({}, this.styles.scrollBar, this.getScrollBarStyles.call(this))} onMouseDown={this.onMouseDown.bind(this)} onTouchStart={this.onMouseDown.bind(this)}/>
             </div>
         </div>;
     }
@@ -200,13 +207,18 @@ class CustomScroll extends Component {
     }
 
     render() {
+        var ctmScroll = this.styles.ctmScroll;
+        var ctmScrollFrame = this.styles.ctmScrollFrame;
+        if (this.state.scrollAreaShow) {
+            ctmScrollFrame = Object.assign({}, ctmScrollFrame, this.styles.ctmScrollActive);
+        }
+        if (this.state.selection) {
+            ctmScroll = Object.assign({}, ctmScroll, this.styles.noselect);
+        }
         return (
-            <div ref="customScroll" className={
-                (this.state.scrollAreaShow ? 'ctm-scroll-bar-active ' : '')    +
-                (this.state.selection ? 'ctm-scroll' : 'ctm-scroll noselect') +
-                (isMobile ? ' ctm-scroll-mobile' : '')}>
-                <div ref="customScrollHolder" className="ctm-scroll-holder" style={{width: this.state.width}} onScroll={this.scroll.bind(this)}>
-                    <div ref="customScrollFrame" className="ctm-scroll-frame">
+            <div ref="customScroll" style={ctmScroll}>
+                <div ref="customScrollHolder" style={Object.assign({}, {width: this.state.width}, this.styles.ctmScrollHolder)} onScroll={this.scroll.bind(this)}>
+                    <div ref="customScrollFrame" style={ctmScrollFrame}>
                         {this.props.children}
                     </div>
                     {this.state.scrollAreaShow ? this.getScrollArea.call(this) : null}

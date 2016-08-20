@@ -44,8 +44,8 @@
                     <CustomScroll>
                         <div className="jumbotron">
                             <div className="container text-center">
-                                <h1>React Custom Scroll</h1>
-                                <p>It is very easy and very small React Custom Scroll library</p>
+                                <h1>React Custom Scroll v2</h1>
+                                <p>This is little component for custom scroll in React. It is very customizable and flexible component. In version 2 you can customization scrollbar</p>
                                 <h2>Features</h2>
                                 <ul>
                                     <li>- Without dependency</li>
@@ -57,6 +57,7 @@
                                     <li>- Mobile compatibility</li>
                                     <li>- Animate scrollTo feature</li>
                                     <li>- min-height and max-height compatibility</li>
+                                    <li>- simple customizations</li>
                                 </ul>
                                 <p><a className="btn btn-primary btn-lg" href="https://github.com/AlexSergey/react-custom-scroll" role="button">Github</a></p>
                             </div>
@@ -157,6 +158,21 @@
                                     </CustomScroll>
                                 </div>
                             </div>
+                            <hr />
+                            <h1>Customization scroll</h1>
+                            <div style={{height: '143px'}}>
+                                <CustomScroll scrollAreaColor="grey" scrollWidth="20px" scrollBarRadius="0" scrollBarColor="black" >
+                                    <p>
+                                        I look like a textarea
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?
+                                    </p>
+                                </CustomScroll>
+                            </div>
                         </div>
                 </CustomScroll>
             )
@@ -167,24 +183,6 @@
             <Layout />,
             document.getElementById('root')
     );
-    /*var h = React.createElement;
-    function render(MyComponent) {
-        return h(MyComponent, { foo: 'bar' });
-    }
-    var Header = React.createClass({
-        render: function() {
-            return h('div')
-        }
-    });
-
-    var Layout = React.createClass({
-        render: function() {
-            return h(CustomScroll, null,
-                h('ul', null, h('li', null, 'Hello'))
-            )
-        }
-    });
-    ReactDOM.render(render(Layout), document.getElementById('root'))*/
 </script>
 </body>
 </html>
