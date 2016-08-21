@@ -1,6 +1,6 @@
-# React Custom Scroll v2
+# React Custom Scroll
 
-This is little component for custom scroll in React. It is very customizable and flexible component. In version 2 you can customization scrollbar
+This is little component for custom scroll in React. It is very customizable and flexible component. You can customization scrollbar.
 
 [Demo](http://natrube.net/custom-scroll/index.html)
 
