@@ -207,14 +207,9 @@ class CustomScroll extends Component {
     }
 
     render() {
-        var ctmScroll = this.styles.ctmScroll;
-        var ctmScrollFrame = this.styles.ctmScrollFrame;
-        if (this.state.scrollAreaShow) {
-            ctmScrollFrame = Object.assign({}, ctmScrollFrame, this.styles.ctmScrollActive);
-        }
-        if (this.state.selection) {
-            ctmScroll = Object.assign({}, ctmScroll, this.styles.noselect);
-        }
+        var ctmScroll      = !this.state.selection     ? Object.assign({}, this.styles.ctmScroll,      this.styles.noselect)        : this.styles.ctmScroll,
+            ctmScrollFrame = this.state.scrollAreaShow ? Object.assign({}, this.styles.ctmScrollFrame, this.styles.ctmScrollActive) : this.styles.ctmScrollFrame;
+        
         return (
             <div ref="customScroll" style={ctmScroll}>
                 <div ref="customScrollHolder" style={Object.assign({}, {width: this.state.width}, this.styles.ctmScrollHolder)} onScroll={this.scroll.bind(this)}>
