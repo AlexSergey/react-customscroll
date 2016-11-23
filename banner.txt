@@ -1,6 +1,6 @@
 |=======================================|
-|       React Custom Scroll 1.0.0       |
+|       React Custom Scroll 2.0.2       |
 |=======================================|
-This is simple custom scroll based on CSS
+This is little component for custom scroll in React. It is very customizable and flexible component. You can customization scrollbar
 
-github: https://github.com/AlexSergey/react-custom-scroll
+github: https://github.com/AlexSergey/react-customscroll
