@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {on, off} from './utils/events';
 import getScrollWidth from './utils/getScrollWidth';
 import clearSelection from './utils/clearSelection';
-
+import stylesFactory from './styles';
 import scrollTo from './modules/scrollTo';
 import mouseWithoutWindow from './modules/mouse.without.window';
 /**
@@ -12,10 +12,9 @@ import mouseWithoutWindow from './modules/mouse.without.window';
  * */
 const minHeightScrollBar = 20;
 const REINIT_MS = 500;
+const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
-var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-
-import stylesFactory from './styles';
+const isFunction = fn => typeof fn === 'function';
 
 class CustomScroll extends Component {
     constructor(props) {
@@ -27,12 +26,21 @@ class CustomScroll extends Component {
         var scrollWidth = getScrollWidth();
         var _this = this;
 
+        // If this is Safari / iPhone / iPad or other browser / device with scrollWidth === 0
+
+        this.isZero = scrollWidth === 0;
+        if (this.isZero) {
+            scrollWidth = 17;
+        }
+
         this.reset = function() {
             _this.removeListeners();
             _this.blockSelection(true);
         };
 
         this.styles = stylesFactory({
+            isZero: this.isZero,
+            originalScrollWidth: scrollWidth,
             scrollWidth:     typeof props.scrollWidth     !== 'undefined' ? props.scrollWidth     : '6px',
             scrollAreaColor: typeof props.scrollAreaColor !== 'undefined' ? props.scrollAreaColor : '#494949',
             scrollBarRadius: typeof props.scrollBarRadius !== 'undefined' ? props.scrollBarRadius : '6px',
@@ -61,7 +69,7 @@ class CustomScroll extends Component {
         this.interval = setInterval(this.reinit.bind(this), REINIT_MS);
 
         this.state = {
-            width: !isMobile ? `calc(100% + ${scrollWidth}px)` : '100%',
+            width: `calc(100% + ${scrollWidth}px)`,
             selection: true,
             scrollAreaShow: false,
             animate: props.animate || true,
@@ -238,7 +246,7 @@ class CustomScroll extends Component {
             <div ref="customScroll" style={ctmScroll} className={this.state.classes.base}>
                 <div ref="customScrollHolder" style={Object.assign({}, {width: this.state.width}, this.styles.ctmScrollHolder)} onScroll={this.scroll.bind(this)} className={this.state.classes.holder}>
                     <div ref="customScrollFrame" style={ctmScrollFrame} className={this.state.classes.frame}>
-                        {this.props.children}
+                        {isFunction(this.props.children) ? this.props.children(this.scrollBlock && this.scrollBlock.scrollTop ? this.scrollBlock.scrollTop : 0) : this.props.children}
                     </div>
                     {this.state.scrollAreaShow ? this.getScrollArea.call(this) : null}
                 </div>

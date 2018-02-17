@@ -1,8 +1,8 @@
-export default function(colors) {
+export default function(props) {
     return {
         scrollArea: {
-            background: colors.scrollAreaColor,
-            width: colors.scrollWidth,
+            background: props.scrollAreaColor,
+            width: props.scrollWidth,
             padding: '1px',
             zIndex: '10',
             top: '0',
@@ -15,11 +15,11 @@ export default function(colors) {
             position: 'relative'
         },
         scrollBar: {
-            borderRadius: colors.scrollBarRadius,
+            borderRadius: props.scrollBarRadius,
             position: 'absolute',
             top: '0',
             width: '100%',
-            background: colors.scrollBarColor,
+            background: props.scrollBarColor,
             cursor: 'pointer'
         },
         ctmScroll: {
@@ -28,11 +28,13 @@ export default function(colors) {
             position: 'relative'
         },
         ctmScrollActive: {
-            paddingRight: colors.scrollWidth
+            paddingRight: props.scrollWidth
         },
-        ctmScrollFrame: {
+        ctmScrollFrame: Object.assign({}, {
             overflow: 'hidden'
-        },
+        }, props.isZero ? {
+            width: `calc(100% - ${props.originalScrollWidth}px)`
+        } : {}),
         noselect: {
             WebkitTouchCallout: 'none',
             WebkitUserSelect: 'none',

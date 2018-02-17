@@ -1,4 +1,4 @@
-# React Custom Scroll
+# React Custom Scroll 3.0
 
 This is little component for custom scroll in React. It is very customizable and flexible component. You can customization scrollbar.
 
@@ -7,7 +7,7 @@ This is little component for custom scroll in React. It is very customizable and
 ## Features:
 - Without dependency
 - Very simple and flexible
-- Very small size (9kb for JS)
+- Very small size (9kb)
 - Easy customization, easy api
 - Keyboard bind
 - Reinitialize after all mutation events
@@ -40,7 +40,7 @@ For example:
   </CustomScroll>
 </div>
 ```
-See more examples in <strong>example/index.html</strong>
+See more examples in <strong>example/index.js</strong>
 
 ## License
 
