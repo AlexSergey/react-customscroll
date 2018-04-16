@@ -5,6 +5,8 @@ import clearSelection from './utils/clearSelection';
 import stylesFactory from './styles';
 import scrollTo from './modules/scrollTo';
 import mouseWithoutWindow from './modules/mouse.without.window';
+import generateStyle from './utils/generateStyle';
+import generateID from './utils/generateID';
 /**
  * This is min height for Scroll Bar.
  * If children content will be very big
@@ -12,17 +14,15 @@ import mouseWithoutWindow from './modules/mouse.without.window';
  * */
 const minHeightScrollBar = 20;
 const REINIT_MS = 500;
-const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
 const isFunction = fn => typeof fn === 'function';
 
 class CustomScroll extends Component {
     constructor(props) {
         super(props);
-
         this.nextWrapperHeight = 0;
         this.nextHolderHeight = 0;
-
+        this.scrollID = generateID();
         var scrollWidth = getScrollWidth();
         var _this = this;
 
@@ -82,6 +82,19 @@ class CustomScroll extends Component {
                 'scroll-bar': `${className}-scrollbar`,
             }
         };
+
+        if (document && document.getElementById) {
+            if (!document.getElementById(this.scrollID)) {
+                generateStyle(`
+#${this.scrollID}::-webkit-scrollbar {
+  opacity: 0;
+}
+#${this.scrollID}::-webkit-scrollbar-track-piece {
+  background-color: transparent;
+}
+                `, this.scrollID)
+            }
+        }
     }
 
     componentDidMount() {
@@ -91,6 +104,12 @@ class CustomScroll extends Component {
     }
 
     componentWillUnmount() {
+        if (document && document.getElementById) {
+            let el = document.getElementById(this.scrollID);
+            if (el) {
+                el.parentNode.removeChild(el);
+            }
+        }
         clearInterval(this.interval);
         this.removeListeners();
         clearTimeout(this.timer);
@@ -244,7 +263,7 @@ class CustomScroll extends Component {
         
         return (
             <div ref="customScroll" style={ctmScroll} className={this.state.classes.base}>
-                <div ref="customScrollHolder" style={Object.assign({}, {width: this.state.width}, this.styles.ctmScrollHolder)} onScroll={this.scroll.bind(this)} className={this.state.classes.holder}>
+                <div ref="customScrollHolder" style={Object.assign({}, {width: this.state.width}, this.styles.ctmScrollHolder)} onScroll={this.scroll.bind(this)} className={this.state.classes.holder} id={this.scrollID}>
                     <div ref="customScrollFrame" style={ctmScrollFrame} className={this.state.classes.frame}>
                         {isFunction(this.props.children) ? this.props.children(this.scrollBlock && this.scrollBlock.scrollTop ? this.scrollBlock.scrollTop : 0) : this.props.children}
                     </div>

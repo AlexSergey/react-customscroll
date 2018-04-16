@@ -1,11 +1,12 @@
 {
   "name": "react-customscroll",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "This is little component for custom scroll in React",
   "main": "dist/main.js",
   "scripts": {
     "start": "NODE_ENV=development node build.example",
     "build:scroll": "NODE_ENV=production node build",
+    "build:scroll:watch": "NODE_ENV=development node build",
     "build:example": "NODE_ENV=production node build.example"
   },
   "repository": {

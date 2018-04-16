@@ -8,9 +8,10 @@ var data = [
 
 class Layout extends Component {
     constructor(prop) {
-        super(prop)
+        super(prop);
         this.state = {
-            data: data
+            data: data,
+            mount: true
         }
     }
     add() {
@@ -46,6 +47,7 @@ class Layout extends Component {
                             <li>- Animate scrollTo feature</li>
                             <li>- min-height and max-height compatibility</li>
                             <li>- simple customizations</li>
+                            <li>- hide default scrollbars in Mac</li>
                         </ul>
                         <p><a className="btn btn-primary btn-lg" href="https://github.com/AlexSergey/react-custom-scroll" role="button">Github</a></p>
                     </div>
@@ -182,6 +184,26 @@ class Layout extends Component {
 
                             }
                         </Customscroll>
+                    </div>
+                    <hr />
+                    <h1>Unmount scroll</h1>
+                    <button onClick={() => this.setState({mount: !this.state.mount})}>
+                        {this.state.mount ? 'Unmount scroll' : 'Mount scroll'}
+                    </button>
+                    <div style={{height: '143px'}}>
+                        {this.state.mount &&
+                            <Customscroll className="custom-class">
+                                <p>
+                                    I look like a textarea
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?
+                                </p>
+                            </Customscroll>
+                        }
                     </div>
                 </div>
             </Customscroll>
