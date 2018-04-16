@@ -15,6 +15,7 @@ This is little component for custom scroll in React. It is very customizable and
 - Animate scrollTo feature
 - min-height and max-height compatibility
 - simple customizations
+- hide default scrollbars in Mac
 
 ## How usage
 
