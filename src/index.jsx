@@ -23,12 +23,18 @@ class CustomScroll extends Component {
         this.nextWrapperHeight = 0;
         this.nextHolderHeight = 0;
         this.scrollID = generateID();
-        var scrollWidth = getScrollWidth();
-        var _this = this;
+        if (!CustomScroll.scrollWidth) {
+            CustomScroll.scrollWidth = getScrollWidth();
+        }
+        let scrollWidth = CustomScroll.scrollWidth;
+        let _this = this;
 
         // If this is Safari / iPhone / iPad or other browser / device with scrollWidth === 0
 
         this.isZero = scrollWidth === 0;
+
+        this.isVirtualized = typeof props.virtualized === 'object';
+
         if (this.isZero) {
             scrollWidth = 17;
         }
@@ -39,6 +45,7 @@ class CustomScroll extends Component {
         };
 
         this.styles = stylesFactory({
+            virtualized: this.isVirtualized,
             isZero: this.isZero,
             originalScrollWidth: scrollWidth,
             scrollWidth:     typeof props.scrollWidth     !== 'undefined' ? props.scrollWidth     : '6px',
@@ -47,7 +54,7 @@ class CustomScroll extends Component {
             scrollBarColor:  typeof props.scrollBarColor  !== 'undefined' ? props.scrollBarColor  : '#aeaeae'
         });
 
-        var className = typeof props.className !== 'undefined' ? props.className : 'react-customscroll';
+        let className = typeof props.className !== 'undefined' ? props.className : 'react-customscroll';
 
         this.restScrollAfterResize = function() {
             _this.nextWrapperHeight = 0;
@@ -80,7 +87,8 @@ class CustomScroll extends Component {
                 'area': `${className}-scrollbar-area`,
                 'area-holder': `${className}-scrollbar-holder`,
                 'scroll-bar': `${className}-scrollbar`,
-            }
+            },
+            virtualState: this.isVirtualized ? this.getScrollBarStyles(props.scrollTo || 0) : null
         };
 
         if (document && document.getElementById) {
@@ -116,10 +124,18 @@ class CustomScroll extends Component {
     }
 
     getParams() {
-        var wrapperHeight = this.customScroll.offsetHeight;
-        var holderHeight = this.customScrollHolder.offsetHeight;
-        var percentDiff = wrapperHeight / holderHeight;
-        var height = wrapperHeight * percentDiff;
+        let wrapperHeight = 0,  holderHeight = 0, percentDiff = 0, height = 0;
+        if (this.isVirtualized) {
+            wrapperHeight = this.props.virtualized.height || 0;
+            holderHeight = this.props.virtualized.scrollHeight || 0;
+
+        }
+        else {
+            wrapperHeight = this.customScroll && this.customScroll.offsetHeight;
+            holderHeight = this.customScroll && this.customScrollHolder.offsetHeight;
+        }
+        percentDiff = wrapperHeight / holderHeight;
+        height = wrapperHeight * percentDiff;
 
         return {
             wrapperHeight,
@@ -142,7 +158,7 @@ class CustomScroll extends Component {
         /**
          * If we clicked right mouse button we must skip this event
          * */
-        var isRightMB;
+        let isRightMB;
         if ('which' in evt) {
             isRightMB = evt.which === 3;
         } else if ('button' in evt) {
@@ -153,20 +169,29 @@ class CustomScroll extends Component {
             return false;
         }
 
-        var elem = this.scrollBlock;
-        var startPoint = evt.touches ? evt.touches[0].pageY : evt.pageY;
+        let elem = this.scrollBlock;
+        let startPoint = evt.touches ? evt.touches[0].pageY : evt.pageY;
 
-        var scrollTopOffset = elem.scrollTop;
+        let scrollTopOffset = this.isVirtualized ? (this.props.scrollTo || 0) : elem.scrollTop;
         this.blockSelection(false);
-        var _this = this;
+        let _this = this;
 
         this.scrollRun = function(e) {
             e.stopPropagation();
             e.preventDefault();
             let {holderHeight, wrapperHeight} = _this.getParams();
-            var diff = holderHeight / wrapperHeight;
-            var pageY = e.touches ? e.touches[0].pageY : e.pageY;
-            scrollTo(elem, ((pageY - startPoint) * diff)  + scrollTopOffset);
+            let diff = holderHeight / wrapperHeight;
+            let pageY = e.touches ? e.touches[0].pageY : e.pageY;
+            if (_this.isVirtualized) {
+                let scrollTop = ((pageY - startPoint) * diff)  + scrollTopOffset;
+                scrollTop = holderHeight - wrapperHeight <= scrollTop ? holderHeight - wrapperHeight : scrollTop;
+                if (isFunction(_this.props.scrollSync)) {
+                    _this.props.scrollSync(scrollTop)
+                }
+            }
+            else {
+                scrollTo(elem, ((pageY - startPoint) * diff)  + scrollTopOffset);
+            }
         };
 
         this.endScroll = function() {
@@ -190,10 +215,19 @@ class CustomScroll extends Component {
 
         if ((wrapperHeight !== this.nextWrapperHeight) ||
             (holderHeight  !== this.nextHolderHeight)) {
-
-            this.setState({
-                scrollAreaShow: holderHeight > wrapperHeight
-            });
+            if (this.isVirtualized) {
+                let scrollPosition = this.props.scrollTo || 0;
+                let virtualState = this.getScrollBarStyles(scrollPosition);
+                this.setState({
+                    virtualState,
+                    scrollAreaShow: holderHeight > wrapperHeight
+                });
+            }
+            else {
+                this.setState({
+                    scrollAreaShow: holderHeight > wrapperHeight
+                });
+            }
         }
 
         this.nextWrapperHeight = wrapperHeight;
@@ -201,24 +235,37 @@ class CustomScroll extends Component {
     }
 
     jump(e) {
-        var y = e.touches ? e.touches[0].pageY : e.pageY;
-        var scrollBar = this.refs.scrollBar;
-        var scrollPosition  = this.scrollBlock.scrollTop;
-        let {wrapperHeight} = this.getParams();
-        var topOffset = this.scrollBlock.getBoundingClientRect().top;
+        let y = e.touches ? e.touches[0].pageY : e.pageY;
+        let scrollBar = this.refs.scrollBar;
+        let scrollPosition  = this.scrollBlock.scrollTop;
+        let { wrapperHeight } = this.getParams();
+        let topOffset = this.scrollBlock.getBoundingClientRect().top;
 
+        if (this.isVirtualized) {
+            scrollBar = {};
+            scrollPosition = this.props.scrollTo || 0;
+            scrollBar.offsetTop = this.state.virtualState.top;
+            scrollBar.offsetHeight = this.state.virtualState.height;
+        }
         if (y < (topOffset + scrollBar.offsetTop) ||
             y > (topOffset + scrollBar.offsetTop + scrollBar.offsetHeight)) {
-            var offset  = topOffset + scrollBar.offsetTop <= y ? 1 : -1;
-            var scrollY = (scrollPosition + (wrapperHeight * offset));
-            scrollTo(this.scrollBlock, scrollY);
+            let offset  = topOffset + scrollBar.offsetTop <= y ? 1 : -1;
+            let scrollY = (scrollPosition + (wrapperHeight * offset));
+            if (this.isVirtualized) {
+                if (isFunction(this.props.scrollSync)) {
+                    this.props.scrollSync(scrollY)
+                }
+            }
+            else {
+                scrollTo(this.scrollBlock, scrollY);
+            }
         }
     }
 
     getScrollArea() {
         return <div ref="scroll-area" style={this.styles.scrollArea} onClick={this.jump.bind(this)} className={this.state.classes.area}>
             <div ref="scroll-area-holder" style={this.styles.scrollAreaFrame} className={this.state.classes['area-holder']}>
-                <div ref="scrollBar" style={Object.assign({}, this.styles.scrollBar, this.getScrollBarStyles.call(this))} onMouseDown={this.onMouseDown.bind(this)} onTouchStart={this.onMouseDown.bind(this)} className={this.state.classes['scroll-bar']} />
+                <div ref="scrollBar" style={Object.assign({}, this.styles.scrollBar, this.isVirtualized ? this.state.virtualState : this.getScrollBarStyles.call(this))} onMouseDown={this.onMouseDown.bind(this)} onTouchStart={this.onMouseDown.bind(this)} className={this.state.classes['scroll-bar']} />
             </div>
         </div>;
     }
@@ -229,15 +276,15 @@ class CustomScroll extends Component {
         });
     }
 
-    getScrollBarStyles() {
-        let {holderHeight, percentDiff, height} = this.getParams();
-        var scrollTop = this.state.scrollTop || this.scrollBlock.scrollTop;
+    getScrollBarStyles(offsetY) {
+        let { holderHeight, percentDiff, height } = this.getParams();
+        let scrollTop = this.isVirtualized ? offsetY : this.state.scrollTop || this.scrollBlock.scrollTop;
 
-        var newPercentDiff = height < minHeightScrollBar ?
+        let newPercentDiff = height < minHeightScrollBar ?
             percentDiff - ((minHeightScrollBar - height) / holderHeight) :
             percentDiff;
 
-        var scrollBarHeight = height < minHeightScrollBar ? minHeightScrollBar : height;
+        let scrollBarHeight = height < minHeightScrollBar ? minHeightScrollBar : height;
 
         return {
             top: scrollTop * newPercentDiff,
@@ -246,10 +293,19 @@ class CustomScroll extends Component {
     }
 
     componentWillReceiveProps(props) {
-        var offsetY = parseInt(props.scrollTo);
-
+        let offsetY = parseInt(props.scrollTo);
+        if (this.isVirtualized) {
+            offsetY = offsetY || 0;
+            let a = this.getScrollBarStyles(offsetY);
+            console.log(a);
+            this.setState({
+                virtualState: a
+            });
+        }
         if (typeof offsetY !== 'undefined' && !isNaN(offsetY)) {
-            scrollTo.call(this, this.scrollBlock, offsetY, this.state.animate);
+            if (!this.isVirtualized) {
+                scrollTo.call(this, this.scrollBlock, offsetY, this.state.animate);
+            }
         }
     }
 
@@ -258,7 +314,7 @@ class CustomScroll extends Component {
     }
 
     render() {
-        var ctmScroll      = !this.state.selection     ? Object.assign({}, this.styles.ctmScroll,      this.styles.noselect)        : this.styles.ctmScroll,
+        let ctmScroll      = !this.state.selection     ? Object.assign({}, this.styles.ctmScroll,      this.styles.noselect)        : this.styles.ctmScroll,
             ctmScrollFrame = this.state.scrollAreaShow ? Object.assign({}, this.styles.ctmScrollFrame, this.styles.ctmScrollActive) : this.styles.ctmScrollFrame;
         
         return (
@@ -274,4 +330,4 @@ class CustomScroll extends Component {
     }
 }
 
-module.exports = CustomScroll;
+export default CustomScroll;

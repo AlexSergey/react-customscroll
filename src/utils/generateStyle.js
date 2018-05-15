@@ -1,5 +1,5 @@
 export default function generateStyle(css, id) {
-    var head = document.head || document.getElementsByTagName('head')[0],
+    let head = document.head || document.getElementsByTagName('head')[0],
         style = document.createElement('style');
 
     style.setAttribute('id', id);

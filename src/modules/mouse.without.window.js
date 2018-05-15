@@ -1,9 +1,9 @@
-var MouseWithoutWindow = (function () {
-    var instance;
+let MouseWithoutWindow = (function () {
+    let instance;
 
     function createInstance() {
         document.addEventListener('mouseup', function(e) {
-            var w = window,
+            let w = window,
                 d = document,
                 el = d.documentElement,
                 body = d.getElementsByTagName('body')[0],
@@ -29,7 +29,7 @@ var MouseWithoutWindow = (function () {
         });
 
         function fire() {
-            var event = document.createEvent('Event');
+            let event = document.createEvent('Event');
             event.initEvent('mouseWithoutWindow', true, true);
             document.dispatchEvent(event);
         }
@@ -45,6 +45,6 @@ var MouseWithoutWindow = (function () {
     };
 }());
 
-var mouseWithoutWindow = MouseWithoutWindow.getInstance();
+let mouseWithoutWindow = MouseWithoutWindow.getInstance();
 
 export default mouseWithoutWindow;

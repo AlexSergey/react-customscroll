@@ -30,7 +30,7 @@ export default function(props) {
         ctmScrollActive: {
             paddingRight: props.scrollWidth
         },
-        ctmScrollFrame: Object.assign({}, {
+        ctmScrollFrame: Object.assign({}, props.virtualized ? {height: '100%'} : {
             overflow: 'hidden'
         }, props.isZero ? {
             width: `calc(100% - ${props.originalScrollWidth}px)`

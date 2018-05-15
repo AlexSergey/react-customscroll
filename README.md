@@ -1,4 +1,4 @@
-# React Custom Scroll 3.0
+# React Custom Scroll 4.0
 
 This is little component for custom scroll in React. It is very customizable and flexible component. You can customization scrollbar.
 
@@ -16,6 +16,7 @@ This is little component for custom scroll in React. It is very customizable and
 - min-height and max-height compatibility
 - simple customizations
 - hide default scrollbars in Mac
+- support React-sortable-tree / React-virtualized
 
 ## How usage
 

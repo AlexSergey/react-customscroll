@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import { render, findDOMNode } from 'react-dom';
-import Customscroll from '../dist/main'
+import Customscroll from '../../src'
 import './styles/example.css';
+
+import SortableTree from 'react-sortable-tree';
+import ContainerDimensions from 'react-container-dimensions';
+import 'react-sortable-tree/style.css';
+
 var data = [
     'Click add please! '
 ];
@@ -11,7 +16,69 @@ class Layout extends Component {
         super(prop);
         this.state = {
             data: data,
-            mount: true
+            mount: true,
+            treeData: [
+                { title: 'Chicken first', children: [{ title: 'Egg' }] },
+                { title: 'Chicken 2', children: [{ title: 'Egg' }] },
+                { title: 'Chicken 3', children: [{ title: 'Egg' }] },
+                { title: 'Chicken 4', children: [{ title: 'Egg' }] },
+                { title: 'Chicken 5', children: [{ title: 'Egg' }] },
+                { title: 'Chicken 6', children: [{ title: 'Egg' }] },
+                { title: 'Chicken 7', children: [{ title: 'Egg' }] },
+                { title: 'Chicken 8', children: [{ title: 'Egg' }] },
+                { title: 'Chicken 10', children: [{ title: 'Egg' }] },
+                { title: 'Chicken 11', children: [{ title: 'Egg' }] },
+                { title: 'Chicken 12', children: [{ title: 'Egg' }] },
+                { title: 'Chicken 13', children: [{ title: 'Egg' }] },
+                { title: 'Chicken 14', children: [{ title: 'Egg' }] },
+                { title: 'Chicken 15', children: [{ title: 'Egg' }] },
+                { title: 'Chicken 16', children: [{ title: 'Egg' }] },
+                { title: 'Chicken 17', children: [{ title: 'Egg' }] },
+                { title: 'Chicken 18', children: [{ title: 'Egg' }] },
+                { title: 'Chicken 19', children: [{ title: 'Egg' }] },
+                { title: 'Chicken 20', children: [{ title: 'Egg' }] },
+                { title: 'Chicken 21', children: [{ title: 'Egg' }] },
+                { title: 'Chicken 22', children: [{ title: 'Egg' }] },
+                { title: 'Chicken 23', children: [{ title: 'Egg' }] },
+                { title: 'Chicken 24', children: [{ title: 'Egg' }] },
+                { title: 'Chicken 25', children: [{ title: 'Egg' }] },
+                { title: 'Chicken 26', children: [{ title: 'Egg' }] },
+                { title: 'Chicken 27', children: [{ title: 'Egg' }] },
+                { title: 'Chicken 28', children: [{ title: 'Egg' }] },
+                { title: 'Chicken 29', children: [{ title: 'Egg' }] },
+                { title: 'Chicken 30', children: [{ title: 'Egg' }] },
+                { title: 'Chicken 31', children: [{ title: 'Egg' }] },
+                { title: 'Chicken 32', children: [{ title: 'Egg' }] },
+                { title: 'Chicken 33', children: [{ title: 'Egg' }] },
+                { title: 'Chicken 34', children: [{ title: 'Egg' }] },
+                { title: 'Chicken 35', children: [{ title: 'Egg' }] },
+                { title: 'Chicken 36', children: [{ title: 'Egg' }] },
+                { title: 'Chicken 37', children: [{ title: 'Egg' }] },
+                { title: 'Chicken 38', children: [{ title: 'Egg' }] },
+                { title: 'Chicken 39', children: [{ title: 'Egg' }] },
+                { title: 'Chicken 40', children: [{ title: 'Egg' }] },
+                { title: 'Chicken 41', children: [{ title: 'Egg' }] },
+                { title: 'Chicken 42', children: [{ title: 'Egg' }] },
+                { title: 'Chicken 43', children: [{ title: 'Egg' }] },
+                { title: 'Chicken 44', children: [{ title: 'Egg' }] },
+                { title: 'Chicken 45', children: [{ title: 'Egg' }] },
+                { title: 'Chicken 46', children: [{ title: 'Egg' }] },
+                { title: 'Chicken 47', children: [{ title: 'Egg' }] },
+                { title: 'Chicken 48', children: [{ title: 'Egg' }] },
+                { title: 'Chicken 49', children: [{ title: 'Egg' }] },
+                { title: 'Chicken 50', children: [{ title: 'Egg' }] },
+                { title: 'Chicken 51', children: [{ title: 'Egg' }] },
+                { title: 'Chicken 52', children: [{ title: 'Egg' }] },
+                { title: 'Chicken 53', children: [{ title: 'Egg' }] },
+                { title: 'Chicken 54', children: [{ title: 'Egg' }] },
+                { title: 'Chicken 55', children: [{ title: 'Egg' }] },
+                { title: 'Chicken 56', children: [{ title: 'Egg' }] },
+                { title: 'Chicken last', children: [{ title: 'Egg' }] }
+            ],
+            virtualHeight: 0,
+            virtualScrollHeight: 0,
+            virtualScrollTop: 0,
+            scrollTop: 0
         }
     }
     add() {
@@ -28,6 +95,14 @@ class Layout extends Component {
         this.refs.scrollWithAnchor.setY(anchorOffset);
     }
 
+    updateVirtualScroll = (height, scrollHeight, scrollTop) => {
+        this.setState({
+            virtualHeight: height,
+            virtualScrollHeight: scrollHeight,
+            virtualScrollTop: scrollTop
+        });
+    }
+
     render() {
         return (
             <Customscroll>
@@ -39,7 +114,7 @@ class Layout extends Component {
                         <ul>
                             <li>- Without dependency</li>
                             <li>- Very simple and flexible</li>
-                            <li>- Very small size (8kb for JS / 1kb - CSS)</li>
+                            <li>- Very small size (10kb)</li>
                             <li>- Easy customization, easy api</li>
                             <li>- Keyboard bind</li>
                             <li>- Reinitialize after all mutation events</li>
@@ -48,6 +123,7 @@ class Layout extends Component {
                             <li>- min-height and max-height compatibility</li>
                             <li>- simple customizations</li>
                             <li>- hide default scrollbars in Mac</li>
+                            <li>- support React-sortable-tree / React-virtualized</li>
                         </ul>
                         <p><a className="btn btn-primary btn-lg" href="https://github.com/AlexSergey/react-custom-scroll" role="button">Github</a></p>
                     </div>
@@ -205,6 +281,44 @@ class Layout extends Component {
                             </Customscroll>
                         }
                     </div>
+                    <hr/>
+                    <h1>React-Sortable-Tree / React-Virtualized</h1>
+                    <div style={{height: 400}}>
+                        <ContainerDimensions>
+                            {({ width, height }) =>
+                                <div style={{ height }}>
+                                    <Customscroll virtualized={{
+                                        height: this.state.virtualHeight,
+                                        scrollHeight: this.state.virtualScrollHeight
+                                    }} scrollTo={this.state.virtualScrollTop}
+                                                  scrollSync={scrollTop => {
+                                                      this.setState({scrollTop});
+                                                  }}>
+                                        <SortableTree
+                                            reactVirtualizedListProps={{
+                                                ref: (c) => this.virtualList = c,
+                                                scrollTop: this.state.scrollTop,
+                                                width: width + (Customscroll.scrollWidth || 0),
+                                                onScroll: ({ scrollHeight, scrollTop }) => {
+                                                    this.updateVirtualScroll(height, scrollHeight, scrollTop);
+                                                }
+                                            }}
+                                            treeData={this.state.treeData}
+                                            onChange={treeData => {
+                                                this.setState({ treeData }, () => {
+                                                    let list = this.virtualList.container;
+
+                                                    this.updateVirtualScroll(height, list.scrollHeight, list.scrollTop);
+                                                });
+                                            }}
+                                        />
+                                    </Customscroll>
+                                </div>
+                            }
+                        </ContainerDimensions>
+                    </div>
+                    <hr />
+                    <hr />
                 </div>
             </Customscroll>
         )
