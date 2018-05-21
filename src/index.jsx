@@ -125,6 +125,13 @@ class CustomScroll extends Component {
 
     getParams() {
         let wrapperHeight = 0,  holderHeight = 0, percentDiff = 0, height = 0;
+
+        let scrollArea = this.refs['scroll-area'];
+        let paddings = window && scrollArea ?
+            parseFloat(window.getComputedStyle(scrollArea, null).getPropertyValue('padding-top')) +
+            parseFloat(window.getComputedStyle(scrollArea, null).getPropertyValue('padding-bottom')) :
+            0;
+
         if (this.isVirtualized) {
             wrapperHeight = this.props.virtualized.height || 0;
             holderHeight = this.props.virtualized.scrollHeight || 0;
@@ -134,7 +141,7 @@ class CustomScroll extends Component {
             wrapperHeight = this.customScroll && this.customScroll.offsetHeight;
             holderHeight = this.customScroll && this.customScrollHolder.offsetHeight;
         }
-        percentDiff = wrapperHeight / holderHeight;
+        percentDiff = (wrapperHeight - paddings) / holderHeight;
         height = wrapperHeight * percentDiff;
 
         return {
