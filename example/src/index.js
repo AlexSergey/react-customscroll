@@ -75,7 +75,6 @@ class Layout extends Component {
                 { title: 'Chicken 56', children: [{ title: 'Egg' }] },
                 { title: 'Chicken last', children: [{ title: 'Egg' }] }
             ],
-            virtualHeight: 0,
             virtualScrollHeight: 0,
             virtualScrollTop: 0,
             scrollTop: 0
@@ -95,9 +94,8 @@ class Layout extends Component {
         this.refs.scrollWithAnchor.setY(anchorOffset);
     }
 
-    updateVirtualScroll = (height, scrollHeight, scrollTop) => {
+    updateVirtualScroll = (scrollHeight, scrollTop) => {
         this.setState({
-            virtualHeight: height,
             virtualScrollHeight: scrollHeight,
             virtualScrollTop: scrollTop
         });
@@ -288,7 +286,7 @@ class Layout extends Component {
                             {({ width, height }) =>
                                 <div style={{ height }}>
                                     <Customscroll virtualized={{
-                                        height: this.state.virtualHeight,
+                                        height: height,
                                         scrollHeight: this.state.virtualScrollHeight
                                     }} scrollTo={this.state.virtualScrollTop}
                                                   scrollSync={scrollTop => {
@@ -300,7 +298,7 @@ class Layout extends Component {
                                                 scrollTop: this.state.scrollTop,
                                                 width: width + (Customscroll.scrollWidth || 0),
                                                 onScroll: ({ scrollHeight, scrollTop }) => {
-                                                    this.updateVirtualScroll(height, scrollHeight, scrollTop);
+                                                    this.updateVirtualScroll(scrollHeight, scrollTop);
                                                 }
                                             }}
                                             treeData={this.state.treeData}
@@ -308,7 +306,7 @@ class Layout extends Component {
                                                 this.setState({ treeData }, () => {
                                                     let list = this.virtualList.container;
 
-                                                    this.updateVirtualScroll(height, list.scrollHeight, list.scrollTop);
+                                                    this.updateVirtualScroll(list.scrollHeight, list.scrollTop);
                                                 });
                                             }}
                                         />

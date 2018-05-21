@@ -303,10 +303,9 @@ class CustomScroll extends Component {
         let offsetY = parseInt(props.scrollTo);
         if (this.isVirtualized) {
             offsetY = offsetY || 0;
-            let a = this.getScrollBarStyles(offsetY);
-            console.log(a);
+
             this.setState({
-                virtualState: a
+                virtualState: this.getScrollBarStyles(offsetY)
             });
         }
         if (typeof offsetY !== 'undefined' && !isNaN(offsetY)) {
