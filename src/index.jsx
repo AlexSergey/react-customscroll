@@ -141,8 +141,14 @@ class CustomScroll extends Component {
             wrapperHeight = this.customScroll && this.customScroll.offsetHeight;
             holderHeight = this.customScroll && this.customScrollHolder.offsetHeight;
         }
-        percentDiff = (wrapperHeight - paddings) / holderHeight;
-        height = wrapperHeight * percentDiff;
+        if (holderHeight === 0) {
+            height = 0;
+            percentDiff = 0;
+        }
+        else {
+            percentDiff = (wrapperHeight - paddings) / holderHeight;
+            height = wrapperHeight * percentDiff;
+        }
 
         return {
             wrapperHeight,
@@ -285,12 +291,18 @@ class CustomScroll extends Component {
 
     getScrollBarStyles(offsetY) {
         let { holderHeight, percentDiff, height } = this.getParams();
+        if (holderHeight === 0 && percentDiff === 0 && height === 0) {
+            return {
+                top: 0,
+                height: 0
+            };
+        }
         let scrollTop = this.isVirtualized ? offsetY : this.state.scrollTop || this.scrollBlock.scrollTop;
 
         let newPercentDiff = height < minHeightScrollBar ?
             percentDiff - ((minHeightScrollBar - height) / holderHeight) :
             percentDiff;
-
+        
         let scrollBarHeight = height < minHeightScrollBar ? minHeightScrollBar : height;
 
         return {
@@ -322,7 +334,7 @@ class CustomScroll extends Component {
     render() {
         let ctmScroll      = !this.state.selection     ? Object.assign({}, this.styles.ctmScroll,      this.styles.noselect)        : this.styles.ctmScroll,
             ctmScrollFrame = this.state.scrollAreaShow ? Object.assign({}, this.styles.ctmScrollFrame, this.styles.ctmScrollActive) : this.styles.ctmScrollFrame;
-        
+
         return (
             <div ref="customScroll" style={ctmScroll} className={this.state.classes.base}>
                 <div ref="customScrollHolder" style={Object.assign({}, {width: this.state.width}, this.styles.ctmScrollHolder)} onScroll={this.scroll.bind(this)} className={this.state.classes.holder} id={this.scrollID}>
