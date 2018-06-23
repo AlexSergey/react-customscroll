@@ -1,6 +1,6 @@
 {
   "name": "react-customscroll",
-  "version": "4.0.3",
+  "version": "4.0.4",
   "description": "This is little component for custom scroll in React",
   "main": "dist/main.js",
   "scripts": {

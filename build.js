@@ -1,18 +1,16 @@
-const { compile, customize } = require('rocket-starter');
+const { compile } = require('rocket-starter');
 
-compile(customize({
+compile({
     src: './src/index',
     library: 'CustomScroll',
     dist: './dist'
-}, {
-    post: config => {
-        config.externals = [{
-            react: {
-                root: 'React',
-                commonjs2: 'react',
-                commonjs: 'react',
-                amd: 'react'
-            }
-        }]
-    }
-}));
+}, config => {
+    config.externals = [{
+        react: {
+            root: 'React',
+            commonjs2: 'react',
+            commonjs: 'react',
+            amd: 'react'
+        }
+    }]
+});

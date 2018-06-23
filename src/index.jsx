@@ -338,7 +338,7 @@ class CustomScroll extends Component {
         return (
             <div ref="customScroll" style={ctmScroll} className={this.state.classes.base}>
                 <div ref="customScrollHolder" style={Object.assign({}, {width: this.state.width}, this.styles.ctmScrollHolder)} onScroll={this.scroll.bind(this)} className={this.state.classes.holder} id={this.scrollID}>
-                    <div ref="customScrollFrame" style={ctmScrollFrame} className={this.state.classes.frame}>
+                    <div ref="customScrollFrame" style={Object.assign({}, ctmScrollFrame, this.isZero ? {width: '100%'} : {})} className={this.state.classes.frame}>
                         {isFunction(this.props.children) ? this.props.children(this.scrollBlock && this.scrollBlock.scrollTop ? this.scrollBlock.scrollTop : 0) : this.props.children}
                     </div>
                     {this.state.scrollAreaShow ? this.getScrollArea.call(this) : null}
