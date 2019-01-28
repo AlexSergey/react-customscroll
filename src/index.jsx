@@ -151,7 +151,7 @@ class CustomScroll extends Component {
         }
 
         return {
-            wrapperHeight,
+            wrapperHeight: Math.ceil(wrapperHeight),
             holderHeight,
             percentDiff,
             height
