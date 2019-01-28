@@ -3,7 +3,8 @@ const { compile } = require('rocket-starter');
 compile({
     src: './src/index',
     library: 'CustomScroll',
-    dist: './dist'
+    dist: './dist',
+    html: false
 }, config => {
     config.externals = [{
         react: {

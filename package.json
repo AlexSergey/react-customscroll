@@ -1,6 +1,6 @@
 {
   "name": "react-customscroll",
-  "version": "4.0.4",
+  "version": "4.0.6",
   "description": "This is little component for custom scroll in React",
   "main": "dist/main.js",
   "scripts": {
@@ -13,9 +13,17 @@
   },
   "author": "Aleksandrov Sergey <gooddev.sergey@gmail.com> (https://github.com/AlexSergey/react-customscroll)",
   "license": "MIT",
+  "keywords": [
+    "react",
+    "react-component",
+    "scroll",
+    "scrollbar",
+    "customscroll",
+    "ui"
+  ],
   "devDependencies": {
-    "react": "16.2.0",
-    "react-dom": "16.2.0",
+    "react": "16.7.0",
+    "react-dom": "16.7.0",
     "rocket-starter": "git+https://github.com/AlexSergey/rocket-starter.git"
   }
 }

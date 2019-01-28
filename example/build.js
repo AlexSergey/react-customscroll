@@ -1,4 +1,4 @@
-const { compile } = require('rocket-starter');
+const { compile } = require('../node_modules/rocket-starter');
 const path = require('path');
 
 compile({},

@@ -14,5 +14,5 @@ logs
 reports
 documentation
 webpack.customConfig.js
-dist/stats.json
+
 example/dist/stats.json
