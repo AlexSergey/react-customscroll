@@ -1,7 +1,9 @@
-const { compile } = require('../node_modules/rocket-starter');
+const { frontendCompiler } = require('../node_modules/rocket-starter');
 const path = require('path');
 
-compile({},
+frontendCompiler({
+        url: './'
+    },
     props => {
         Object.assign(props.resolve, {
             alias: {
@@ -9,8 +11,5 @@ compile({},
                 'prop-types': path.resolve(__dirname, '../node_modules/prop-types'),
                 react: path.resolve(__dirname, '../node_modules/react')
             }
-        });
-        Object.assign(props.output, {
-            publicPath: './'
         });
 });

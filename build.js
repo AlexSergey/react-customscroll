@@ -1,11 +1,6 @@
-const { compile } = require('rocket-starter');
+const { libraryCompiler } = require('rocket-starter');
 
-compile({
-    src: './src/index',
-    library: 'CustomScroll',
-    dist: './dist',
-    html: false
-}, config => {
+libraryCompiler('CustomScroll', {}, config => {
     config.externals = [{
         react: {
             root: 'React',

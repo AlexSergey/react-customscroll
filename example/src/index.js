@@ -96,6 +96,7 @@ class Layout extends Component {
 
     updateVirtualScroll = (scrollHeight, scrollTop) => {
         this.setState({
+            scrollTop,
             virtualScrollHeight: scrollHeight,
             virtualScrollTop: scrollTop
         });

@@ -1,6 +1,6 @@
 {
   "name": "react-customscroll",
-  "version": "4.0.6",
+  "version": "4.0.7",
   "description": "This is little component for custom scroll in React",
   "main": "dist/main.js",
   "scripts": {
@@ -22,8 +22,8 @@
     "ui"
   ],
   "devDependencies": {
-    "react": "16.7.0",
-    "react-dom": "16.7.0",
-    "rocket-starter": "git+https://github.com/AlexSergey/rocket-starter.git"
+    "react": "16.8.6",
+    "react-dom": "16.8.6",
+    "rocket-starter": "1.0.0"
   }
 }
