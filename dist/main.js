@@ -1,6 +1,6 @@
 /*!
  * banner:
- * react-customscroll: 4.0.7
+ * react-customscroll: 4.0.8
  * Aleksandrov Sergey <gooddev.sergey@gmail.com> (https://github.com/AlexSergey/react-customscroll)
  * This is little component for custom scroll in React
  * MIT
