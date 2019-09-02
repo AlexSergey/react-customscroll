@@ -2,7 +2,7 @@
   "name": "react-customscroll-example",
   "version": "1.0.0",
   "description": "This is little component for custom scroll in React",
-  "main": "dist/main.js",
+  "main": "dist/index.js",
   "scripts": {
     "start": "NODE_ENV=development node build",
     "build": "NODE_ENV=production node build"

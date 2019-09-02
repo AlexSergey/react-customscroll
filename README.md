@@ -1,4 +1,4 @@
-# React Custom Scroll 4.0
+# React Custom Scroll 4.1
 
 This is little custom scroll React component. It is very customizable and flexible component. You can customization scrollbar.
 
@@ -7,16 +7,17 @@ This is little custom scroll React component. It is very customizable and flexib
 ## Features:
 - Without dependency
 - Very simple and flexible
-- Very small size (9kb)
+- Very small size (11kb)
 - Easy customization, easy api
 - Keyboard bind
 - Reinitialize after all mutation events
 - Mobile compatibility
 - Animate scrollTo feature
-- min-height and max-height compatibility
-- simple customizations
-- hide default scrollbars in Mac
-- support React-sortable-tree / React-virtualized
+- Min-height and max-height compatibility
+- Simple customizations
+- Hide default scrollbars in Mac
+- Support React-sortable-tree / React-virtualized
+- Support RTL
 
 ## Usage
 
@@ -36,7 +37,7 @@ Paste CustomScroll component inside wrapper block with height and "overflow: hid
 
 For example:
 ```jsx
-<div style={{height: '500px', overflow: 'hidden'}}>
+<div style={{height: '500px', overflow: 'hidden', direction: 'rtl'}}>
   <CustomScroll>
     ...
   </CustomScroll>

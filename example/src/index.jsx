@@ -119,11 +119,13 @@ class Layout extends Component {
                             <li>- Reinitialize after all mutation events</li>
                             <li>- Mobile compatibility</li>
                             <li>- Animate scrollTo feature</li>
-                            <li>- min-height and max-height compatibility</li>
-                            <li>- simple customizations</li>
-                            <li>- hide default scrollbars in Mac</li>
-                            <li>- support React-sortable-tree / React-virtualized</li>
+                            <li>- Min-height and max-height compatibility</li>
+                            <li>- Simple customizations</li>
+                            <li>- Hide default scrollbars in Mac</li>
+                            <li>- Support React-sortable-tree / React-virtualized</li>
+                            <li>- Support RTL</li>
                         </ul>
+                        <h2>License MIT</h2>
                         <p><a className="btn btn-primary btn-lg" href="https://github.com/AlexSergey/react-custom-scroll" role="button">Github</a></p>
                     </div>
                 </div>
@@ -317,6 +319,29 @@ class Layout extends Component {
                         </ContainerDimensions>
                     </div>
                     <hr />
+                    <hr />
+                    <h1>RTL example:</h1>
+                    <div dir="rtl">
+                        <div style={{height: 200}}>
+                            <Customscroll>
+                                <p>?سوف أعطي مثالا على ذلك. لا تمانع</p>
+                                <p>?سوف أعطي مثالا على ذلك. لا تمانع</p>
+                                <p>?سوف أعطي مثالا على ذلك. لا تمانع</p>
+                                <p>?سوف أعطي مثالا على ذلك. لا تمانع</p>
+                                <p>?سوف أعطي مثالا على ذلك. لا تمانع</p>
+                                <p>?سوف أعطي مثالا على ذلك. لا تمانع</p>
+                                <p>?سوف أعطي مثالا على ذلك. لا تمانع</p>
+                                <p>?سوف أعطي مثالا على ذلك. لا تمانع</p>
+                                <p>?سوف أعطي مثالا على ذلك. لا تمانع</p>
+                                <p>?سوف أعطي مثالا على ذلك. لا تمانع</p>
+                                <p>?سوف أعطي مثالا على ذلك. لا تمانع</p>
+                                <p>?سوف أعطي مثالا على ذلك. لا تمانع</p>
+                                <p>?سوف أعطي مثالا على ذلك. لا تمانع</p>
+                                <p>?سوف أعطي مثالا على ذلك. لا تمانع</p>
+                                <p>?سوف أعطي مثالا على ذلك. لا تمانع</p>
+                            </Customscroll>
+                        </div>
+                    </div>
                     <hr />
                 </div>
             </Customscroll>
