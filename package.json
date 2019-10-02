@@ -1,6 +1,6 @@
 {
   "name": "react-customscroll",
-  "version": "4.1.1",
+  "version": "4.2.0",
   "description": "This is little custom scroll React component.",
   "main": "dist/index.js",
   "scripts": {
@@ -26,8 +26,8 @@
     "ui"
   ],
   "devDependencies": {
-    "react": "16.8.6",
-    "react-dom": "16.8.6",
-    "rocket-starter": "1.2.1"
+    "react": "16.10.1",
+    "react-dom": "16.10.1",
+    "rocket-starter": "1.7.5"
   }
 }

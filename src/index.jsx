@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, createRef } from 'react';
 import { on, off } from './utils/events';
 import getScrollWidth from './utils/getScrollWidth';
 import clearSelection from './utils/clearSelection';
@@ -19,11 +19,16 @@ import {
  * Scroll Bar stay 20 pixels
  * */
 const minHeightScrollBar = 20;
-const REINIT_MS = 500;
+const REINIT_MS = 250;
 
 class CustomScroll extends Component {
     constructor(props) {
         super(props);
+
+        ['scroll-area', 'scroll-area-holder', 'scrollBar', 'customScroll', 'customScrollHolder', 'customScrollFrame'].forEach(r => {
+            this[`${r}Ref`] = createRef();
+        });
+
         this.nextWrapperHeight = 0;
         this.nextHolderHeight = 0;
         this.scrollID = generateID();
@@ -117,9 +122,9 @@ class CustomScroll extends Component {
     }
 
     componentDidMount() {
-        this.scrollBlock = this.refs.customScrollHolder;
-        this.customScroll = this.refs.customScroll;
-        this.customScrollHolder = this.refs.customScrollFrame;
+        this.scrollBlock = this.customScrollHolderRef.current;
+        this.customScroll = this.customScrollRef.current;
+        this.customScrollHolder = this.customScrollFrameRef.current;
 
         this.applyStyles();
     }
@@ -139,7 +144,7 @@ class CustomScroll extends Component {
     getParams() {
         let wrapperHeight = 0,  holderHeight = 0, percentDiff = 0, height = 0;
 
-        let scrollArea = this.refs['scroll-area'];
+        let scrollArea = this['scroll-areaRef'].current;
         let paddings = window && scrollArea ?
             parseFloat(window.getComputedStyle(scrollArea, null).getPropertyValue('padding-top')) +
             parseFloat(window.getComputedStyle(scrollArea, null).getPropertyValue('padding-bottom')) :
@@ -262,7 +267,7 @@ class CustomScroll extends Component {
 
     jump(e) {
         let y = e.touches ? e.touches[0].pageY : e.pageY;
-        let scrollBar = this.refs.scrollBar;
+        let scrollBar = this.scrollBarRef.current;
         let scrollPosition  = this.scrollBlock.scrollTop;
         let { wrapperHeight } = this.getParams();
         let topOffset = this.scrollBlock.getBoundingClientRect().top;
@@ -289,9 +294,9 @@ class CustomScroll extends Component {
     }
 
     getScrollArea() {
-        return <div ref="scroll-area" style={this.state.styles.scrollArea} onClick={this.jump.bind(this)} className={this.state.classes.area}>
-            <div ref="scroll-area-holder" style={this.state.styles.scrollAreaFrame} className={this.state.classes['area-holder']}>
-                <div ref="scrollBar" style={Object.assign({}, this.state.styles.scrollBar, this.isVirtualized ? this.state.virtualState : this.getScrollBarStyles.call(this))} onMouseDown={this.onMouseDown.bind(this)} onTouchStart={this.onMouseDown.bind(this)} className={this.state.classes['scroll-bar']} />
+        return <div ref={this['scroll-areaRef']} style={this.state.styles.scrollArea} onClick={this.jump.bind(this)} className={this.state.classes.area}>
+            <div ref={this['scroll-area-holderRef']} style={this.state.styles.scrollAreaFrame} className={this.state.classes['area-holder']}>
+                <div ref={this['scrollBarRef']} style={Object.assign({}, this.state.styles.scrollBar, this.isVirtualized ? this.state.virtualState : this.getScrollBarStyles.call(this))} onMouseDown={this.onMouseDown.bind(this)} onTouchStart={this.onMouseDown.bind(this)} className={this.state.classes['scroll-bar']} />
             </div>
         </div>;
     }
@@ -351,9 +356,9 @@ class CustomScroll extends Component {
             ctmScrollFrame = this.state.scrollAreaShow ? Object.assign({}, this.state.styles.ctmScrollFrame, this.state.styles.ctmScrollActive) : this.state.styles.ctmScrollFrame;
 
         return (
-            <div ref="customScroll" style={ctmScroll} className={this.state.classes.base}>
-                <div ref="customScrollHolder" style={Object.assign({}, {width: this.state.width}, this.state.styles.ctmScrollHolder)} onScroll={this.scroll.bind(this)} className={this.state.classes.holder} id={this.scrollID}>
-                    <div ref="customScrollFrame" style={Object.assign({}, ctmScrollFrame, this.isZero ? {width: '100%'} : {})} className={this.state.classes.frame}>
+            <div ref={this['customScrollRef']} style={ctmScroll} className={this.state.classes.base}>
+                <div ref={this['customScrollHolderRef']} style={Object.assign({}, {width: this.state.width}, this.state.styles.ctmScrollHolder)} onScroll={this.scroll.bind(this)} className={this.state.classes.holder} id={this.scrollID}>
+                    <div ref={this['customScrollFrameRef']} style={Object.assign({}, ctmScrollFrame, this.isZero ? {width: '100%'} : {})} className={this.state.classes.frame}>
                         {isFunction(this.props.children) ?
                             this.props.children(this.scrollBlock && this.scrollBlock.scrollTop ?
                                 this.scrollBlock.scrollTop :

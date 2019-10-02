@@ -1,11 +1,11 @@
-# React Custom Scroll 4.1
+# React Custom Scroll 4.2
 
 This is little custom scroll React component. It is very customizable and flexible component. You can customization scrollbar.
 
 [Demo](http://natrube.net/custom-scroll/index.html)
 
 ## Features:
-- Without dependency
+- Without dependencies
 - Very simple and flexible
 - Very small size (11kb)
 - Easy customization, easy api

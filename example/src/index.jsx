@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { render, findDOMNode } from 'react-dom';
+import React, { Component, createRef } from 'react';
+import { render } from 'react-dom';
 import Customscroll from '../../src'
 import './styles/example.css';
 
@@ -14,6 +14,10 @@ var data = [
 class Layout extends Component {
     constructor(prop) {
         super(prop);
+        this.virtualList = createRef();
+
+        this.anchors = {};
+
         this.state = {
             data: data,
             mount: true,
@@ -89,9 +93,9 @@ class Layout extends Component {
 
     setScrollTo(e) {
         e.preventDefault();
-        var anchorOffset = findDOMNode(this.refs[e.currentTarget.dataset.anc]).offsetTop;
+        var anchorOffset = this.anchors[e.currentTarget.dataset.anc].offsetTop;
 
-        this.refs.scrollWithAnchor.setY(anchorOffset);
+        this.scrollWithAnchor.setY(anchorOffset);
     }
 
     updateVirtualScroll = (scrollHeight, scrollTop) => {
@@ -100,7 +104,7 @@ class Layout extends Component {
             virtualScrollHeight: scrollHeight,
             virtualScrollTop: scrollTop
         });
-    }
+    };
 
     render() {
         return (
@@ -111,9 +115,9 @@ class Layout extends Component {
                         <p>This is little component for custom scroll in React. It is very customizable and flexible component. You can customization scrollbar</p>
                         <h2>Features</h2>
                         <ul>
-                            <li>- Without dependency</li>
+                            <li>- Without dependencies</li>
                             <li>- Very simple and flexible</li>
-                            <li>- Very small size (10kb)</li>
+                            <li>- Very small size (11kb)</li>
                             <li>- Easy customization, easy api</li>
                             <li>- Keyboard bind</li>
                             <li>- Reinitialize after all mutation events</li>
@@ -138,34 +142,34 @@ class Layout extends Component {
                         <li><a href="#" data-anc="anc4" onClick={this.setScrollTo.bind(this)}>to anchor 4</a></li>
                     </ul>
                     <div style={{height: '143px'}}>
-                        <Customscroll ref="scrollWithAnchor">
-                            <h2 ref="anc1">Anchor 1</h2>
+                        <Customscroll ref={c => this.scrollWithAnchor = c}>
+                            <h2 ref={c => this.anchors.anc1 = c}>Anchor 1</h2>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
-                            <h2 ref="anc2">Anchor 2</h2>
+                            <h2 ref={c => this.anchors.anc2 = c}>Anchor 2</h2>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
-                            <h2 ref="anc3">Anchor 3</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
+                            <h2 ref={c => this.anchors.anc3 = c}>Anchor 3</h2>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
-                            <h2 ref="anc4">Anchor 4</h2>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
+                            <h2 ref={c => this.anchors.anc4 = c}>Anchor 4</h2>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?</p>
@@ -291,13 +295,14 @@ class Layout extends Component {
                                     <Customscroll virtualized={{
                                         height: height,
                                         scrollHeight: this.state.virtualScrollHeight
-                                    }} scrollTo={this.state.virtualScrollTop}
-                                                  scrollSync={scrollTop => {
-                                                      this.setState({scrollTop});
-                                                  }}>
+                                    }}
+                                    scrollTo={this.state.virtualScrollTop}
+                                    scrollSync={scrollTop => {
+                                        this.setState({scrollTop});
+                                    }}>
                                         <SortableTree
                                             reactVirtualizedListProps={{
-                                                ref: (c) => this.virtualList = c,
+                                                ref: this.virtualList,
                                                 scrollTop: this.state.scrollTop,
                                                 width: width + (Customscroll.scrollWidth || 0),
                                                 onScroll: ({ scrollHeight, scrollTop }) => {
@@ -306,11 +311,11 @@ class Layout extends Component {
                                             }}
                                             treeData={this.state.treeData}
                                             onChange={treeData => {
-                                                this.setState({ treeData }, () => {
-                                                    let list = this.virtualList.container;
+                                                this.setState({ treeData });
 
-                                                    this.updateVirtualScroll(list.scrollHeight, list.scrollTop);
-                                                });
+                                                let list = this.virtualList.current.container;
+
+                                                this.updateVirtualScroll(list.scrollHeight, list.scrollTop);
                                             }}
                                         />
                                     </Customscroll>
