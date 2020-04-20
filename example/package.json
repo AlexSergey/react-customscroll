@@ -4,8 +4,8 @@
   "description": "This is little component for custom scroll in React",
   "main": "dist/index.js",
   "scripts": {
-    "start": "NODE_ENV=development node build",
-    "build": "NODE_ENV=production node build"
+    "start": "cross-env NODE_ENV=development node build",
+    "build": "cross-env NODE_ENV=production node build"
   },
   "repository": {
     "type": "git",
@@ -14,11 +14,11 @@
   "author": "Aleksandrov Sergey <gooddev.sergey@gmail.com> (https://github.com/AlexSergey/react-customscroll)",
   "license": "MIT",
   "devDependencies": {
-    "react": "16.10.1",
-    "react-dom": "16.10.1",
-    "react-sortable-tree": "2.6.2",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "react-sortable-tree": "2.7.1",
     "react-measure": "2.3.0",
     "react-container-dimensions": "1.4.1",
-    "react-virtualized": "9.21.1"
+    "react-virtualized": "9.21.2"
   }
 }

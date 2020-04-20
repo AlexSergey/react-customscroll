@@ -128,6 +128,7 @@ class Layout extends Component {
                             <li>- Hide default scrollbars in Mac</li>
                             <li>- Support React-sortable-tree / React-virtualized</li>
                             <li>- Support RTL</li>
+                            <li>- Support Server Side Rendering</li>
                         </ul>
                         <h2>License MIT</h2>
                         <p><a className="btn btn-primary btn-lg" href="https://github.com/AlexSergey/react-custom-scroll" role="button">Github</a></p>
@@ -217,7 +218,7 @@ class Layout extends Component {
                         <h1>Textarea scroll:</h1>
                         <div id="textarea" >
                             <Customscroll>
-                                <div contentEditable>
+                                <div contentEditable suppressContentEditableWarning={true}>
                                     I look like a textarea
                                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?
                                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos necessitatibus saepe voluptatem?

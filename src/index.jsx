@@ -59,14 +59,6 @@ class CustomScroll extends Component {
             _this.nextWrapperHeight = 0;
             _this.nextHolderHeight = 0;
         };
-        /**
-         * If mouse cursor gone outside window
-         * Will be fire event 'mouseWithoutWindow'
-         * And all listeners will be remove
-         * and content in scroll block will be selectable
-         * */
-        on(document, ['mouseWithoutWindow'], this.reset);
-        on(window,   ['resize'],             this.restScrollAfterResize);
 
         this.timer = {};
         /**
@@ -122,6 +114,15 @@ class CustomScroll extends Component {
     }
 
     componentDidMount() {
+        /**
+         * If mouse cursor gone outside window
+         * Will trigger event 'mouseWithoutWindow'
+         * And all listeners will remove
+         * Content in scroll block will be selectable
+         * */
+        on(document, ['mouseWithoutWindow'], this.reset);
+        on(window, ['resize'], this.restScrollAfterResize);
+
         this.scrollBlock = this.customScrollHolderRef.current;
         this.customScroll = this.customScrollRef.current;
         this.customScrollHolder = this.customScrollFrameRef.current;
@@ -142,7 +143,16 @@ class CustomScroll extends Component {
     }
 
     getParams() {
-        let wrapperHeight = 0,  holderHeight = 0, percentDiff = 0, height = 0;
+        let wrapperHeight = 0, holderHeight = 0, percentDiff = 0, height = 0;
+
+        if (!isClient()) {
+            return {
+                wrapperHeight,
+                holderHeight,
+                percentDiff,
+                height
+            };
+        }
 
         let scrollArea = this['scroll-areaRef'].current;
         let paddings = window && scrollArea ?
@@ -322,7 +332,7 @@ class CustomScroll extends Component {
         let newPercentDiff = height < minHeightScrollBar ?
             percentDiff - ((minHeightScrollBar - height) / holderHeight) :
             percentDiff;
-        
+
         let scrollBarHeight = height < minHeightScrollBar ? minHeightScrollBar : height;
 
         return {
@@ -331,18 +341,20 @@ class CustomScroll extends Component {
         };
     }
 
-    componentWillReceiveProps(props) {
-        let offsetY = parseInt(props.scrollTo);
-        if (this.isVirtualized) {
-            offsetY = offsetY || 0;
+    componentDidUpdate(prevProps) {
+        let offsetY = parseInt(this.props.scrollTo, 10);
 
-            this.setState({
-                virtualState: this.getScrollBarStyles(offsetY)
-            });
-        }
         if (isDefined(offsetY) && !isNaN(offsetY)) {
-            if (!this.isVirtualized) {
-                scrollTo.call(this, this.scrollBlock, offsetY, this.state.animate);
+            if (prevProps.scrollTo !== offsetY) {
+                if (this.isVirtualized) {
+                    offsetY = offsetY || 0;
+
+                    this.setState({
+                        virtualState: this.getScrollBarStyles(offsetY)
+                    });
+                } else {
+                    scrollTo.call(this, this.scrollBlock, offsetY, this.state.animate);
+                }
             }
         }
     }
@@ -356,9 +368,9 @@ class CustomScroll extends Component {
             ctmScrollFrame = this.state.scrollAreaShow ? Object.assign({}, this.state.styles.ctmScrollFrame, this.state.styles.ctmScrollActive) : this.state.styles.ctmScrollFrame;
 
         return (
-            <div ref={this['customScrollRef']} style={ctmScroll} className={this.state.classes.base}>
-                <div ref={this['customScrollHolderRef']} style={Object.assign({}, {width: this.state.width}, this.state.styles.ctmScrollHolder)} onScroll={this.scroll.bind(this)} className={this.state.classes.holder} id={this.scrollID}>
-                    <div ref={this['customScrollFrameRef']} style={Object.assign({}, ctmScrollFrame, this.isZero ? {width: '100%'} : {})} className={this.state.classes.frame}>
+            <div ref={this['customScrollRef']} style={Object.assign({ boxSizing: 'border-box' },ctmScroll)} className={this.state.classes.base} suppressHydrationWarning={true}>
+                <div ref={this['customScrollHolderRef']} style={Object.assign({ boxSizing: 'border-box' }, {width: this.state.width}, this.state.styles.ctmScrollHolder)} onScroll={this.scroll.bind(this)} className={this.state.classes.holder} id={this.scrollID} suppressHydrationWarning={true}>
+                    <div ref={this['customScrollFrameRef']} style={Object.assign({ boxSizing: 'border-box' }, ctmScrollFrame, this.isZero ? {width: '100%'} : {})} className={this.state.classes.frame} suppressHydrationWarning={true}>
                         {isFunction(this.props.children) ?
                             this.props.children(this.scrollBlock && this.scrollBlock.scrollTop ?
                                 this.scrollBlock.scrollTop :

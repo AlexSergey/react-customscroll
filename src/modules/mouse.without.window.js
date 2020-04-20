@@ -1,3 +1,5 @@
+import { isClient } from '../utils/is';
+
 let MouseWithoutWindow = (function () {
     let instance;
 
@@ -45,6 +47,6 @@ let MouseWithoutWindow = (function () {
     };
 }());
 
-let mouseWithoutWindow = MouseWithoutWindow.getInstance();
+let mouseWithoutWindow = isClient() ? MouseWithoutWindow.getInstance() : null;
 
 export default mouseWithoutWindow;

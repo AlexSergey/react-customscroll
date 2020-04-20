@@ -1,11 +1,11 @@
 {
   "name": "react-customscroll",
-  "version": "4.2.0",
+  "version": "4.5.0",
   "description": "This is little custom scroll React component.",
   "main": "dist/index.js",
   "scripts": {
-    "start": "NODE_ENV=development node build",
-    "build": "NODE_ENV=production node build"
+    "start": "cross-env NODE_ENV=development node build",
+    "build": "cross-env NODE_ENV=production node build"
   },
   "repository": {
     "type": "git",
@@ -26,8 +26,8 @@
     "ui"
   ],
   "devDependencies": {
-    "react": "16.10.1",
-    "react-dom": "16.10.1",
-    "rocket-starter": "1.7.5"
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "rocket-starter": "1.15.5"
   }
 }

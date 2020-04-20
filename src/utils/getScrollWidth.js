@@ -1,4 +1,9 @@
+import { isClient } from './is';
+
 export default function getScrollWidth() {
+    if (!isClient()) {
+        return 0;
+    }
     let inner = document.createElement('p');
     inner.style.width = '100%';
     inner.style.height = '200px';
