@@ -1,24 +1,20 @@
-# React Custom Scroll 4.5
+# React CustomScroll 5.0
 
-This is little custom scroll React component. It is very customizable and flexible component. You can customization scrollbar.
+**React-customscroll** is a tiny React component for scroll bar customization, without dependencies but with a lot of features.
 
 [Demo](http://natrube.net/custom-scroll/index.html)
 
 ## Features:
+- TypeScript support
+- Extremely small size (11kb)
 - Without dependencies
-- Very simple and flexible
-- Very small size (11kb)
-- Easy customization, easy api
-- Keyboard bind
-- Reinitialize after all mutation events
-- Mobile compatibility
+- Easy customization, simple api
+- Native OS scroll behavior
+- Cross browser
 - Animate scrollTo feature
-- Min-height and max-height compatibility
-- Simple customizations
-- Hide default scrollbars in Mac
-- Support React-sortable-tree / React-virtualized
-- Support RTL
-- Support Server Side Rendering
+- React-sortable-tree / React-virtualized support
+- RTL support
+- Server Side Rendering support
 
 ## Usage
 
@@ -28,24 +24,28 @@ npm install react-customscroll -save
 ```
 
 ### Step 2:
+**React-customscroll** works like native browser scroll.
+
+You should paste the component inside the block with scrollable data.
+
+For instance:
 
 ```jsx
 import CustomScroll from 'react-customscroll';
 ```
-
-### Step 3:
-Paste CustomScroll component inside wrapper block with height and "overflow: hidden"
-
-For example:
 ```jsx
-<div style={{height: '500px', overflow: 'hidden', direction: 'rtl'}}>
+<div className="block-with-scrolling">
   <CustomScroll>
-    ...
+    ...long_data_here...
   </CustomScroll>
 </div>
 ```
 
-Here are a few examples <strong>example/index.js</strong>
+If block with a native browser scroll works well it will work with **React-customscroll**
+
+---
+
+[Examples](https://github.com/AlexSergey/react-customscroll/tree/master/example)
 
 ## License
 

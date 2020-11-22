@@ -1,12 +1,20 @@
 {
   "name": "react-customscroll",
-  "version": "4.5.1",
+  "version": "5.0.0",
   "description": "This is little custom scroll React component.",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "start": "cross-env NODE_ENV=development node build",
     "build": "cross-env NODE_ENV=production node build",
-    "production": "npm run build && npm publish"
+    "typing": "cross-env NODE_ENV=production tsc -p . --noEmit",
+    "lint": "cross-env NODE_ENV=production eslint \"src/**\"",
+    "production": "npm run typing && npm run lint && npm run build && npm publish"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "npm run lint && npm run typing"
+    }
   },
   "repository": {
     "type": "git",
@@ -27,8 +35,12 @@
     "ui"
   ],
   "devDependencies": {
-    "react": "16.13.1",
-    "react-dom": "16.13.1",
-    "@rockpack/compiler": "1.0.0"
+    "@types/react": "16.9.56",
+    "@types/react-dom": "17.0.0",
+    "react": "17.0.1",
+    "react-dom": "17.0.1",
+    "@rockpack/compiler": "1.8.0",
+    "@rockpack/codestyle": "1.8.0",
+    "husky": "4.3.0"
   }
 }
