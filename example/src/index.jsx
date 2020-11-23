@@ -10,6 +10,7 @@ class Layout extends Component {
   constructor(prop) {
     super(prop);
     this.virtualList = createRef();
+    this.sticky = createRef();
 
     this.anchors = {};
 
@@ -373,46 +374,53 @@ class Layout extends Component {
               </p>
             </Customscroll>
           </div>
-          <div style={{ height: '143px' }}>
+          <div style={{ height: '143px' }} ref={this.sticky}>
             <h2>Sticky block</h2>
             <Customscroll>
-              {scroll =>
-                [
-                  <div key="sticky" style={{
-                    position: 'absolute',
-                    background: 'black',
-                    color: 'white',
-                    pointerEvents: 'none',
-                    padding: '20px',
-                    top: `${scroll}px`,
-                    width: '100%'
-                  }}>
-                    I am sticky
-                  </div>,
-                  <p key="text">
-                    I look like a textarea
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos
-                    libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae
-                    eos necessitatibus saepe voluptatem?
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos
-                    libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae
-                    eos necessitatibus saepe voluptatem?
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos
-                    libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae
-                    eos necessitatibus saepe voluptatem?
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos
-                    libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae
-                    eos necessitatibus saepe voluptatem?
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos
-                    libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae
-                    eos necessitatibus saepe voluptatem?
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos
-                    libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae
-                    eos necessitatibus saepe voluptatem?
-                  </p>
-                ]
-
-              }
+              {scroll => {
+                let offset = scroll;
+                if (this.sticky.current) {
+                  if (scroll >= this.sticky.current.offsetHeight - 60) {
+                    offset = this.sticky.current.offsetHeight - 60;
+                  }
+                }
+                return (
+                  <>
+                    <div style={{
+                      position: 'absolute',
+                      background: 'black',
+                      color: 'white',
+                      pointerEvents: 'none',
+                      padding: '20px',
+                      top: `${offset}px`,
+                      width: '100%'
+                    }}>
+                      I am sticky
+                    </div>
+                    <p>
+                      I look like a textarea
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos
+                      libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae
+                      eos necessitatibus saepe voluptatem?
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos
+                      libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae
+                      eos necessitatibus saepe voluptatem?
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos
+                      libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae
+                      eos necessitatibus saepe voluptatem?
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos
+                      libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae
+                      eos necessitatibus saepe voluptatem?
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos
+                      libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae
+                      eos necessitatibus saepe voluptatem?
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos
+                      libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae
+                      eos necessitatibus saepe voluptatem?
+                    </p>
+                  </>
+                );
+              }}
             </Customscroll>
           </div>
           <hr />

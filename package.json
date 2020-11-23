@@ -1,7 +1,7 @@
 {
   "name": "react-customscroll",
   "version": "5.0.0",
-  "description": "This is little custom scroll React component.",
+  "description": "This is a tiny React component for scroll bar customization, without dependencies but with a lot of features.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
