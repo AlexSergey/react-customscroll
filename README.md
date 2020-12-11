@@ -1,4 +1,4 @@
-# React CustomScroll 5.0
+# React CustomScroll 5.1
 
 **React-customscroll** is a tiny React component for scroll bar customization, without dependencies but with a lot of features.
 
@@ -15,6 +15,7 @@
 - React-sortable-tree / React-virtualized support
 - RTL support
 - Server Side Rendering support
+- Scroll snap support
 
 ## Usage
 

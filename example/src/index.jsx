@@ -128,6 +128,7 @@ class Layout extends Component {
               <li>- React-sortable-tree / React-virtualized support</li>
               <li>- RTL support</li>
               <li>- Server Side Rendering support</li>
+              <li>- Scroll snap support</li>
             </ul>
             <h2>License MIT</h2>
             <p>
@@ -517,6 +518,23 @@ class Layout extends Component {
             </div>
           </div>
           <hr />
+          <div>
+            <h3>Scroll Snap</h3>
+            <div className="images-list">
+              <Customscroll>
+                <img src="https://source.unsplash.com/250x250/?nature,water" alt=""/>
+                <img src="https://source.unsplash.com/250x250/?food" alt="" />
+                <img src="https://source.unsplash.com/250x250/?laptop" alt="" />
+                <img src="https://source.unsplash.com/250x250/?phone" alt="" />
+                <img src="https://source.unsplash.com/250x250/?cat" alt="" />
+                <img src="https://source.unsplash.com/250x250/?nature,water" alt="" />
+                <img src="https://source.unsplash.com/250x250/?food" alt="" />
+                <img src="https://source.unsplash.com/250x250/?laptop" alt="" />
+                <img src="https://source.unsplash.com/250x250/?phone" alt="" />
+                <img src="https://source.unsplash.com/250x250/?cat" alt="" />
+              </Customscroll>
+            </div>
+          </div>
         </div>
       </Customscroll>
     )

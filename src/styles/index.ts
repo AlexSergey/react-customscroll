@@ -47,9 +47,7 @@ export const stylesFactory = (props: Props, rtl?: boolean): Styles => ({
   } : {
     paddingRight: props.scrollWidth
   }),
-  ctmScrollFrame: Object.assign({}, props.virtualized ? { height: '100%', width: '100%' } : {
-    overflow: 'hidden'
-  }, props.isZero ? {
+  ctmScrollFrame: Object.assign({}, props.virtualized ? { height: '100%', width: '100%' } : {}, props.isZero ? {
     width: `calc(100% - ${props.originalScrollWidth}px)`
   } : {}),
   noselect: {

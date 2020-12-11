@@ -7372,3 +7372,18 @@ fieldset[disabled] .btn-danger.active {
 ul {
     list-style: none;
 }
+.images-list {
+  height: 200px;
+  width: 200px;
+}
+
+.images-list .react-customscroll-holder {
+  scroll-snap-type: y mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+.images-list img {
+  display: block;
+  width: 200px;
+  height: 200px;
+  scroll-snap-align: start;
+}
