@@ -1,15 +1,11 @@
-import React, { Component, createRef } from 'react';
-import { render } from 'react-dom';
-import SortableTree from 'react-sortable-tree';
-import ContainerDimensions from 'react-container-dimensions';
-import 'react-sortable-tree/style.css';
-import Customscroll, { getDefaultScrollWidth } from '../../src';
+import React, { Component, createRef, StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import CustomScroll from '../../src';
 import './styles/example.css';
 
 class Layout extends Component {
   constructor(prop) {
     super(prop);
-    this.virtualList = createRef();
     this.sticky = createRef();
 
     this.anchors = {};
@@ -19,66 +15,6 @@ class Layout extends Component {
         'Click add please! '
       ],
       mount: true,
-      treeData: [
-        { title: 'Chicken first', children: [{ title: 'Egg' }] },
-        { title: 'Chicken 2', children: [{ title: 'Egg' }] },
-        { title: 'Chicken 3', children: [{ title: 'Egg' }] },
-        { title: 'Chicken 4', children: [{ title: 'Egg' }] },
-        { title: 'Chicken 5', children: [{ title: 'Egg' }] },
-        { title: 'Chicken 6', children: [{ title: 'Egg' }] },
-        { title: 'Chicken 7', children: [{ title: 'Egg' }] },
-        { title: 'Chicken 8', children: [{ title: 'Egg' }] },
-        { title: 'Chicken 10', children: [{ title: 'Egg' }] },
-        { title: 'Chicken 11', children: [{ title: 'Egg' }] },
-        { title: 'Chicken 12', children: [{ title: 'Egg' }] },
-        { title: 'Chicken 13', children: [{ title: 'Egg' }] },
-        { title: 'Chicken 14', children: [{ title: 'Egg' }] },
-        { title: 'Chicken 15', children: [{ title: 'Egg' }] },
-        { title: 'Chicken 16', children: [{ title: 'Egg' }] },
-        { title: 'Chicken 17', children: [{ title: 'Egg' }] },
-        { title: 'Chicken 18', children: [{ title: 'Egg' }] },
-        { title: 'Chicken 19', children: [{ title: 'Egg' }] },
-        { title: 'Chicken 20', children: [{ title: 'Egg' }] },
-        { title: 'Chicken 21', children: [{ title: 'Egg' }] },
-        { title: 'Chicken 22', children: [{ title: 'Egg' }] },
-        { title: 'Chicken 23', children: [{ title: 'Egg' }] },
-        { title: 'Chicken 24', children: [{ title: 'Egg' }] },
-        { title: 'Chicken 25', children: [{ title: 'Egg' }] },
-        { title: 'Chicken 26', children: [{ title: 'Egg' }] },
-        { title: 'Chicken 27', children: [{ title: 'Egg' }] },
-        { title: 'Chicken 28', children: [{ title: 'Egg' }] },
-        { title: 'Chicken 29', children: [{ title: 'Egg' }] },
-        { title: 'Chicken 30', children: [{ title: 'Egg' }] },
-        { title: 'Chicken 31', children: [{ title: 'Egg' }] },
-        { title: 'Chicken 32', children: [{ title: 'Egg' }] },
-        { title: 'Chicken 33', children: [{ title: 'Egg' }] },
-        { title: 'Chicken 34', children: [{ title: 'Egg' }] },
-        { title: 'Chicken 35', children: [{ title: 'Egg' }] },
-        { title: 'Chicken 36', children: [{ title: 'Egg' }] },
-        { title: 'Chicken 37', children: [{ title: 'Egg' }] },
-        { title: 'Chicken 38', children: [{ title: 'Egg' }] },
-        { title: 'Chicken 39', children: [{ title: 'Egg' }] },
-        { title: 'Chicken 40', children: [{ title: 'Egg' }] },
-        { title: 'Chicken 41', children: [{ title: 'Egg' }] },
-        { title: 'Chicken 42', children: [{ title: 'Egg' }] },
-        { title: 'Chicken 43', children: [{ title: 'Egg' }] },
-        { title: 'Chicken 44', children: [{ title: 'Egg' }] },
-        { title: 'Chicken 45', children: [{ title: 'Egg' }] },
-        { title: 'Chicken 46', children: [{ title: 'Egg' }] },
-        { title: 'Chicken 47', children: [{ title: 'Egg' }] },
-        { title: 'Chicken 48', children: [{ title: 'Egg' }] },
-        { title: 'Chicken 49', children: [{ title: 'Egg' }] },
-        { title: 'Chicken 50', children: [{ title: 'Egg' }] },
-        { title: 'Chicken 51', children: [{ title: 'Egg' }] },
-        { title: 'Chicken 52', children: [{ title: 'Egg' }] },
-        { title: 'Chicken 53', children: [{ title: 'Egg' }] },
-        { title: 'Chicken 54', children: [{ title: 'Egg' }] },
-        { title: 'Chicken 55', children: [{ title: 'Egg' }] },
-        { title: 'Chicken 56', children: [{ title: 'Egg' }] },
-        { title: 'Chicken last', children: [{ title: 'Egg' }] }
-      ],
-      virtualScrollHeight: 0,
-      virtualScrollTop: 0,
       scrollTop: 0
     };
   }
@@ -98,17 +34,9 @@ class Layout extends Component {
     ));
   }
 
-  updateVirtualScroll = (scrollHeight, scrollTop) => {
-    this.setState({
-      scrollTop,
-      virtualScrollHeight: scrollHeight,
-      virtualScrollTop: scrollTop
-    });
-  };
-
   render() {
     return (
-      <Customscroll>
+      <CustomScroll>
         <div className="jumbotron">
           <div className="container text-center">
             <h1>React CustomScroll</h1>
@@ -118,6 +46,7 @@ class Layout extends Component {
             </p>
             <h2>Features</h2>
             <ul>
+              <li>- React 19 support</li>
               <li>- TypeScript support</li>
               <li>- Extremely small size (11kb)</li>
               <li>- Without dependencies</li>
@@ -125,7 +54,6 @@ class Layout extends Component {
               <li>- Native OS scroll behavior</li>
               <li>- Cross browser</li>
               <li>- Animate scrollTo feature</li>
-              <li>- React-sortable-tree / React-virtualized support</li>
               <li>- RTL support</li>
               <li>- Server Side Rendering support</li>
               <li>- Scroll snap support</li>
@@ -145,7 +73,7 @@ class Layout extends Component {
             <li><a href="#" data-anc="anc4" onClick={this.setScrollTo}>to anchor 4</a></li>
           </ul>
           <div style={{ height: '143px' }}>
-            <Customscroll ref={c => this.scrollWithAnchor = c}>
+            <CustomScroll ref={c => this.scrollWithAnchor = c}>
               <h2 ref={c => this.anchors.anc1 = c}>Anchor 1</h2>
               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos
                  libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae
@@ -307,15 +235,15 @@ class Layout extends Component {
                  libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae
                  eos necessitatibus saepe voluptatem?</p>
               <h3>The end</h3>
-            </Customscroll>
+            </CustomScroll>
           </div>
           <hr />
           <div>
             <h1>Auto reinit:</h1>
             <div style={{ width: '350px', height: '200px' }}>
-              <Customscroll>
+              <CustomScroll>
                 {this.state.data.map((p, k) => <p key={k}>{p}</p>)}
-              </Customscroll>
+              </CustomScroll>
             </div>
             <button className="btn btn-default" onClick={this.add}>Add</button>
           </div>
@@ -323,7 +251,7 @@ class Layout extends Component {
           <div>
             <h1>Textarea scroll:</h1>
             <div id="textarea">
-              <Customscroll>
+              <CustomScroll>
                 <div contentEditable suppressContentEditableWarning>
                   I look like a textarea
                   Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos
@@ -345,13 +273,13 @@ class Layout extends Component {
                   libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae
                   eos necessitatibus saepe voluptatem?
                 </div>
-              </Customscroll>
+              </CustomScroll>
             </div>
           </div>
           <hr />
           <h1>Customization scroll</h1>
           <div style={{ height: '143px' }}>
-            <Customscroll className="custom-class" scrollAreaColor="grey" scrollWidth="20px" scrollBarRadius="0" scrollBarColor="black">
+            <CustomScroll className="custom-class" scrollAreaColor="grey" scrollWidth="20px" scrollBarRadius="0" scrollBarColor="black">
               <p>
                 I look like a textarea
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos
@@ -373,11 +301,11 @@ class Layout extends Component {
                 libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos
                 necessitatibus saepe voluptatem?
               </p>
-            </Customscroll>
+            </CustomScroll>
           </div>
           <div style={{ height: '143px' }} ref={this.sticky}>
             <h2>Sticky block</h2>
-            <Customscroll>
+            <CustomScroll>
               {scroll => {
                 let offset = scroll;
                 if (this.sticky.current) {
@@ -422,7 +350,7 @@ class Layout extends Component {
                   </>
                 );
               }}
-            </Customscroll>
+            </CustomScroll>
           </div>
           <hr />
           <h1>Unmount scroll</h1>
@@ -431,7 +359,7 @@ class Layout extends Component {
           </button>
           <div style={{ height: '143px' }}>
             {this.state.mount &&
-            <Customscroll className="custom-class">
+            <CustomScroll className="custom-class">
               <p>
                 I look like a textarea
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos distinctio, eaque eos
@@ -453,52 +381,14 @@ class Layout extends Component {
                 libero maxime, modi natus necessitatibus nesciunt quis reiciendis rem repellat rerum. Aliquam beatae eos
                 necessitatibus saepe voluptatem?
               </p>
-            </Customscroll>
+            </CustomScroll>
             }
           </div>
-          <hr />
-          <h1>React-Sortable-Tree / React-Virtualized</h1>
-          <div style={{ height: 400 }}>
-            <ContainerDimensions>
-              {({ width, height }) =>
-                <div style={{ height }}>
-                  <Customscroll virtualized={{
-                    height: height,
-                    scrollHeight: this.state.virtualScrollHeight
-                  }}
-                  scrollTo={this.state.virtualScrollTop}
-                  scrollSync={scrollTop => {
-                    this.setState({ scrollTop });
-                  }}>
-                    <SortableTree
-                      reactVirtualizedListProps={{
-                        ref: this.virtualList,
-                        scrollTop: this.state.scrollTop,
-                        width: width + (getDefaultScrollWidth() || 0),
-                        onScroll: ({ scrollHeight, scrollTop }) => {
-                          this.updateVirtualScroll(scrollHeight, scrollTop);
-                        }
-                      }}
-                      treeData={this.state.treeData}
-                      onChange={treeData => {
-                        this.setState({ treeData });
-
-                        let list = this.virtualList.current.container;
-
-                        this.updateVirtualScroll(list.scrollHeight, list.scrollTop);
-                      }}
-                    />
-                  </Customscroll>
-                </div>
-              }
-            </ContainerDimensions>
-          </div>
-          <hr />
           <hr />
           <h1>RTL example:</h1>
           <div>
             <div style={{ height: 200 }}>
-              <Customscroll rtl>
+              <CustomScroll rtl>
                 <p>?سوف أعطي مثالا على ذلك. لا تمانع</p>
                 <p>?سوف أعطي مثالا على ذلك. لا تمانع</p>
                 <p>?سوف أعطي مثالا على ذلك. لا تمانع</p>
@@ -514,34 +404,35 @@ class Layout extends Component {
                 <p>?سوف أعطي مثالا على ذلك. لا تمانع</p>
                 <p>?سوف أعطي مثالا على ذلك. لا تمانع</p>
                 <p>?سوف أعطي مثالا على ذلك. لا تمانع</p>
-              </Customscroll>
+              </CustomScroll>
             </div>
           </div>
           <hr />
           <div>
             <h3>Scroll Snap</h3>
             <div className="images-list">
-              <Customscroll>
-                <img src="https://source.unsplash.com/250x250/?nature,water" alt=""/>
-                <img src="https://source.unsplash.com/250x250/?food" alt="" />
-                <img src="https://source.unsplash.com/250x250/?laptop" alt="" />
-                <img src="https://source.unsplash.com/250x250/?phone" alt="" />
-                <img src="https://source.unsplash.com/250x250/?cat" alt="" />
-                <img src="https://source.unsplash.com/250x250/?nature,water" alt="" />
-                <img src="https://source.unsplash.com/250x250/?food" alt="" />
-                <img src="https://source.unsplash.com/250x250/?laptop" alt="" />
-                <img src="https://source.unsplash.com/250x250/?phone" alt="" />
-                <img src="https://source.unsplash.com/250x250/?cat" alt="" />
-              </Customscroll>
+              <CustomScroll>
+                <div style={{ height: 200, width: 200, backgroundColor: 'red' }} className="snap-block" />
+                <div style={{height: 200, width: 200, backgroundColor: 'green'}} className="snap-block" />
+                <div style={{height: 200, width: 200, backgroundColor: 'grey'}} className="snap-block" />
+                <div style={{height: 200, width: 200, backgroundColor: 'beige'}} className="snap-block" />
+                <div style={{height: 200, width: 200, backgroundColor: 'blue'}} className="snap-block" />
+                <div style={{height: 200, width: 200, backgroundColor: 'black'}} className="snap-block" />
+                <div style={{height: 200, width: 200, backgroundColor: 'aqua'}} className="snap-block" />
+                <div style={{height: 200, width: 200, backgroundColor: 'snow'}} className="snap-block" />
+              </CustomScroll>
             </div>
           </div>
         </div>
-      </Customscroll>
+      </CustomScroll>
     )
   }
 }
 
-render(
-  <Layout />,
-  document.getElementById('root')
+const root = createRoot(document.getElementById('root'));
+
+root.render(
+  <StrictMode>
+    <Layout />
+  </StrictMode>
 );

@@ -14,11 +14,10 @@
   "author": "Aleksandrov Sergey <gooddev.sergey@gmail.com> (https://github.com/AlexSergey/react-customscroll)",
   "license": "MIT",
   "dependencies": {
-    "react": "17.0.1",
-    "react-dom": "17.0.1",
-    "react-sortable-tree": "2.8.0",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
     "react-measure": "2.5.2",
     "react-container-dimensions": "1.4.1",
-    "react-virtualized": "9.22.2"
+    "react-virtualized": "9.22.6"
   }
 }

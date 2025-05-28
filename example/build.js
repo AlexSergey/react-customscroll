@@ -2,7 +2,7 @@ const { frontendCompiler } = require('@rockpack/compiler');
 const path = require('path');
 
 frontendCompiler({}, finalConfig => {
-  finalConfig.output.publicPath = './';
+  finalConfig.output.publicPath = '/';
 
   Object.assign(finalConfig.resolve, {
     alias: {

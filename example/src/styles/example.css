@@ -7381,7 +7381,7 @@ ul {
   scroll-snap-type: y mandatory;
   -webkit-overflow-scrolling: touch;
 }
-.images-list img {
+.images-list .snap-block {
   display: block;
   width: 200px;
   height: 200px;

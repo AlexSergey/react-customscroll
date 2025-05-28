@@ -1,4 +1,4 @@
-import { CustomScroll, getDefaultScrollWidth } from './Scroll';
+import { CustomScroll, getDefaultScrollWidth } from "./scroll";
 
 export default CustomScroll;
 

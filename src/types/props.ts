@@ -1,16 +1,16 @@
-import { ReactNode } from 'react';
+import { ReactNode } from "react";
 
-export type Props = {
-  scrollTo?: number;
+export interface Props {
+  children: (offset: number) => ReactNode;
+  rtl?: boolean;
+  scrollAreaColor?: string;
+  scrollBarColor?: string;
+  scrollBarRadius?: string;
   scrollSync?: (offset: number) => unknown;
+  scrollTo?: number;
+  scrollWidth?: string;
   virtualized?: {
     height: number;
     scrollHeight: number;
   };
-  scrollWidth?: string;
-  scrollAreaColor?: string;
-  scrollBarRadius?: string;
-  scrollBarColor?: string;
-  rtl?: boolean;
-  children: (offset: number) => unknown | ReactNode;
-};
+}

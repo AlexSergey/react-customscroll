@@ -5,6 +5,7 @@
 [Demo](http://natrube.net/custom-scroll/index.html)
 
 ## Features:
+- React 19 support
 - TypeScript support
 - Extremely small size (11kb)
 - Without dependencies
@@ -12,7 +13,6 @@
 - Native OS scroll behavior
 - Cross browser
 - Animate scrollTo feature
-- React-sortable-tree / React-virtualized support
 - RTL support
 - Server Side Rendering support
 - Scroll snap support

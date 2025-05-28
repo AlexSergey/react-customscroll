@@ -1,26 +1,10 @@
-export type Styles = {
-  scrollArea: {
-    [key: string]: string | number;
-  };
-  scrollAreaFrame: {
-    [key: string]: string | number;
-  };
-  scrollBar: {
-    [key: string]: string | number;
-  };
-  ctmScroll: {
-    [key: string]: string | number;
-  };
-  ctmScrollActive: {
-    [key: string]: string | number;
-  };
-  ctmScrollFrame: {
-    [key: string]: string | number;
-  };
-  noselect: {
-    [key: string]: string | number;
-  };
-  ctmScrollHolder: {
-    [key: string]: string | number;
-  };
-};
+export interface Styles {
+  ctmScroll: Record<string, number | string>;
+  ctmScrollActive: Record<string, number | string>;
+  ctmScrollFrame: Record<string, number | string>;
+  ctmScrollHolder: Record<string, number | string>;
+  noselect: Record<string, number | string>;
+  scrollArea: Record<string, number | string>;
+  scrollAreaFrame: Record<string, number | string>;
+  scrollBar: Record<string, number | string>;
+}

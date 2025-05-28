@@ -1,19 +1,19 @@
-import { Styles } from './styles';
+import { Styles } from "./styles";
 
-export type State = {
-  scrollTop: number;
-  width: string;
-  selection: boolean;
-  scrollAreaShow: boolean;
+export interface State {
   animate: boolean;
   classes: {
-    base: string;
-    holder: string;
-    frame: string;
     area: string;
-    'area-holder': string;
-    'scroll-bar': string;
+    "area-holder": string;
+    base: string;
+    frame: string;
+    holder: string;
+    "scroll-bar": string;
   };
-  virtualState: { top: number; height: number } | null;
+  scrollAreaShow: boolean;
+  scrollTop: number;
+  selection: boolean;
   styles: Styles;
-};
+  virtualState: null | { height: number; top: number };
+  width: string;
+}
