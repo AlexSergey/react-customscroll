@@ -1,4 +1,4 @@
-# React CustomScroll 5.1
+# React CustomScroll
 
 **React-customscroll** is a tiny React component for scroll bar customization, without dependencies but with a lot of features.
 
@@ -7,7 +7,7 @@
 ## Features:
 - React 19 support
 - TypeScript support
-- Extremely small size (11kb)
+- Tiny size (11kb)
 - Without dependencies
 - Easy customization, simple api
 - Native OS scroll behavior
@@ -20,11 +20,13 @@
 ## Usage
 
 ### Step 1:
+
 ```
 npm install react-customscroll -save
 ```
 
 ### Step 2:
+
 **React-customscroll** works like native browser scroll.
 
 You should paste the component inside the block with scrollable data.
@@ -34,6 +36,7 @@ For instance:
 ```jsx
 import CustomScroll from 'react-customscroll';
 ```
+
 ```jsx
 <div className="block-with-scrolling">
   <CustomScroll>
