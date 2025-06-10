@@ -36,9 +36,9 @@
     "ui"
   ],
   "devDependencies": {
-    "@rockpack/codestyle": "6.0.0",
-    "@rockpack/compiler": "6.0.0",
-    "@rockpack/tsconfig": "6.0.0",
+    "@rockpack/codestyle": "6.0.3",
+    "@rockpack/compiler": "6.0.3",
+    "@rockpack/tsconfig": "6.0.3",
     "@types/react": "19.1.6",
     "@types/react-dom": "19.1.5",
     "husky": "9.1.7",
